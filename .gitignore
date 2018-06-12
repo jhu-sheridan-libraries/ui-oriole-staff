@@ -60,3 +60,6 @@ typings/
 # local configurations
 .stripesclirc
 stripes.config.js.local
+
+# IDE
+.vscode
