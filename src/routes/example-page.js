@@ -20,21 +20,18 @@ export default class ExamplePage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.buttonClick = this.buttonClick.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.state = { showModal: false };
   }
 
-  toggleModal(showModal) {
+  toggleModal = (showModal) => {
     this.setState({ showModal });
   }
 
-  onClose() {
+  onClose = () => {
     this.toggleModal(false);
   }
 
-  buttonClick() {
+  buttonClick = () => {
     this.toggleModal(true);
   }
 
@@ -45,7 +42,7 @@ export default class ExamplePage extends React.Component {
           <Headline size="small">Paneset and Panes</Headline>
           These columns are created with Paneset and Pane components.
           <hr />
-          <Link to={`/oriole`}>home page</Link>
+          <Link to="/oriole">home page</Link>
         </Pane>
         <Pane defaultWidth="80%" paneTitle="Some Stripes Components">
           <Headline size="small" margin="medium">Button with modal</Headline>
