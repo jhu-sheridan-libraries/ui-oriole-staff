@@ -23,165 +23,30 @@
     "eslint": "^4.8.0"
   },
   "dependencies": {
-    "@folio/stripes-components": "^2.0.0",
+    "@folio/stripes-components": "^3.0.0",
     "@folio/stripes-form": "^0.8.200022",
-    "@folio/stripes-smart-components": "^1.4.0",
+    "@folio/stripes-smart-components": "^1.4.23",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.0",
     "react-intl": "^2.4.0",
     "react-router-dom": "^4.1.1"
   },
   "peerDependencies": {
+    "@folio/stripes-connect": "^3.1.1",
+    "@folio/stripes-core": "^2.10.2",
+    "@folio/stripes-logger": "^0.0.2",
     "react": "*"
   },
   "stripes": {
     "type": "app",
     "displayName": "ui-oriole.title",
     "route": "/oriole",
+    "home": "/oriole",
     "hasSettings": true,
     "okapiInterfaces": {
-      "vendor": "1.0"
+      "oriole": "1.0"
     },
     "queryResource": "query",
-    "permissionSets": [
-      {
-        "permissionName": "module.oriole.enabled",
-        "displayName": "UI: Oriole module is enabled",
-        "visible": true
-      },
-      {
-        "permissionName": "settings.oriole.enabled",
-        "displayName": "Settings (oriole): display list of settings pages",
-        "subPermissions": [
-          "settings.enabled"
-        ],
-        "visible": true
-      },
-      {
-        "permissionName": "module.vendors.enabled",
-        "displayName": "UI: Vendors module is enabled"
-      },
-      {
-        "permissionName": "contact_category.collection.get",
-        "displayName": "contact-categories collection get",
-        "description": "Get a collection of categories for Contacts"
-      },
-      {
-        "permissionName": "contact_category.item.post",
-        "displayName": "contact-category post",
-        "description": "Create a new Contact category"
-      },
-      {
-        "permissionName": "contact_category.item.get",
-        "displayName": "contact-category get",
-        "description": "Fetch a Contact category"
-      },
-      {
-        "permissionName": "contact_category.item.put",
-        "displayName": "contact-category put",
-        "description": "Update a Contact category"
-      },
-      {
-        "permissionName": "contact_category.item.delete",
-        "displayName": "contact-category delete",
-        "description": "Delete a Contact category"
-      },
-      {
-        "permissionName": "contact_category.all",
-        "displayName": "contact_category all",
-        "description": "All permissions for contact_category",
-        "subPermissions": [
-          "contact_category.collection.get",
-          "contact_category.item.post",
-          "contact_category.item.get",
-          "contact_category.item.put",
-          "contact_category.item.delete"
-        ]
-      },
-      {
-        "permissionName": "vendor_category.collection.get",
-        "displayName": "categories collection get",
-        "description": "Get a collection of categories"
-      },
-      {
-        "permissionName": "vendor_category.item.post",
-        "displayName": "vendor-category post",
-        "description": "Create a new category"
-      },
-      {
-        "permissionName": "vendor_category.item.get",
-        "displayName": "contact-category get",
-        "description": "Fetch a category"
-      },
-      {
-        "permissionName": "vendor_category.item.put",
-        "displayName": "contact-category put",
-        "description": "Update a category"
-      },
-      {
-        "permissionName": "vendor_category.item.delete",
-        "displayName": "contact-category delete",
-        "description": "Delete a category"
-      },
-      {
-        "permissionName": "vendor_category.all",
-        "displayName": "vendor_category all",
-        "description": "All permissions for categories",
-        "subPermissions": [
-          "vendor_category.collection.get",
-          "vendor_category.item.post",
-          "vendor_category.item.get",
-          "vendor_category.item.put",
-          "vendor_category.item.delete"
-        ]
-      },
-      {
-        "permissionName": "vendor.collection.get",
-        "displayName": "vendor collection get",
-        "description": "Get a collection of vendors"
-      },
-      {
-        "permissionName": "vendor.item.post",
-        "displayName": "vendor post",
-        "description": "Create a new vendor"
-      },
-      {
-        "permissionName": "vendor.item.get",
-        "displayName": "vendor get",
-        "description": "Fetch a vendor"
-      },
-      {
-        "permissionName": "vendor.item.put",
-        "displayName": "vendor put",
-        "description": "Update a vendor"
-      },
-      {
-        "permissionName": "vendor.item.delete",
-        "displayName": "vendor delete",
-        "description": "Delete a vendor"
-      },
-      {
-        "permissionName": "vendor.all",
-        "displayName": "vendor all",
-        "description": "All permissions for vendors",
-        "subPermissions": [
-          "vendor.collection.get",
-          "vendor.item.post",
-          "vendor.item.get",
-          "vendor.item.put",
-          "vendor.item.delete"
-        ]
-      },
-      {
-        "permissionName": "vendor.module.all",
-        "displayName": "vendor-module all",
-        "description": "All permissions for the vendor module",
-        "subPermissions": [
-          "vendor.all",
-          "vendor_category.all",
-          "contact_category.all"
-        ]
-      }
-    ]
+    "permissionSets": []
   }
 }

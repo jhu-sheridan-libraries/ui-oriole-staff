@@ -93,6 +93,7 @@ class Databases extends Component {
   });
 
   static propTypes = {
+    match: PropTypes.object,
     stripes: PropTypes.object,
     mutator: PropTypes.object.isRequired,
     // onSelectRow: PropTypes.func,
@@ -131,9 +132,9 @@ class Databases extends Component {
     };
 
     return (
-      <div style={{ width: '100%' }} className>
+      <div style={{ width: '100%' }}>
         <SearchAndSort
-          packageInfo={this.packageInfoReWrite()}
+          packageInfo={packageInfo}
           moduleName="databases"
           moduleTitle="databases"
           objectName="databases"
@@ -154,8 +155,8 @@ class Databases extends Component {
           newRecordPerms="databases.item.post"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
-          detailProps={this.props.stripes}
-          stripes={this.strips}
+          detailProps={{ stripes }}
+          // stripes={this.props.stripes}
           // onComponentWillUnmount={onComponentWillUnmount}
           searchableIndexes={searchableIndexes}
           selectedIndex={_.get(this.props.resources.query, 'qindex')}
