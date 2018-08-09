@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
-import Application from './routes/application';
+import Main from './components/Main';
 import ExamplePage from './routes/example-page';
-import Databases from './routes/databases';
 import Settings from './settings';
 
 /*
@@ -22,7 +21,7 @@ class Oriole extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.connectedApp = props.stripes.connect(Databases);
+    this.connectedApp = props.stripes.connect(Main);
   }
 
   render() {

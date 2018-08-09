@@ -5,9 +5,10 @@ import SearchAndSort from '@folio/stripes-smart-components/lib/SearchAndSort';
 import transitionToParams from '@folio/stripes-components/util/transitionToParams';
 import removeQueryParam from '@folio/stripes-components/util/removeQueryParam';
 import { filters2cql } from '@folio/stripes-components/lib/FilterGroups';
-import packageInfo from '../../package';
-import DatabaseView from '../components/DatabaseView';
-import DatabasePane from '../components/DatabasePane';
+import packageInfo from '../../../package';
+import DatabaseView from '../DatabaseView';
+import DatabasePane from '../DatabasePane';
+import css from './Main.css';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
@@ -19,7 +20,7 @@ const searchableIndexes = [
 ];
 const filterConfig = [];
 
-class Databases extends Component {
+class Main extends Component {
   static manifest = Object.freeze({
     initializedFilterConfig: { initialValue: false },
     query: {
@@ -132,7 +133,7 @@ class Databases extends Component {
     };
 
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%' }} className={css.panepadding}>
         <SearchAndSort
           packageInfo={packageInfo}
           moduleName="databases"
@@ -168,4 +169,4 @@ class Databases extends Component {
   }
 }
 
-export default Databases;
+export default Main;
