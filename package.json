@@ -9,7 +9,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "stripes serve",
+    "start": "NODE_OPTIONS='--max-old-space-size=6192' stripes serve",
     "build": "stripes build --output ./output",
     "test": "stripes test nightmare --run demo --show",
     "lint": "eslint src"
