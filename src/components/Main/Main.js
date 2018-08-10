@@ -95,7 +95,7 @@ class Main extends Component {
 
   static propTypes = {
     match: PropTypes.object,
-    stripes: PropTypes.object,
+    stripes: PropTypes.object.isRequired,
     mutator: PropTypes.object.isRequired,
     // onSelectRow: PropTypes.func,
     resources: PropTypes.object.isRequired,
@@ -154,10 +154,10 @@ class Main extends Component {
           // viewRecordPerms="databases.item.get"
           viewRecordPerms=""
           newRecordPerms="databases.item.post"
-          parentResources={this.props.resources}
-          parentMutator={this.props.mutator}
+          parentResources={resources}
+          parentMutator={mutator}
           detailProps={{ stripes }}
-          // stripes={this.props.stripes}
+          stripes={stripes}
           // onComponentWillUnmount={onComponentWillUnmount}
           searchableIndexes={searchableIndexes}
           selectedIndex={_.get(this.props.resources.query, 'qindex')}

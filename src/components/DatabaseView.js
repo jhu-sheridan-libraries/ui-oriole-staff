@@ -11,15 +11,7 @@ class DatabaseView extends Component {
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,
-    stripes: PropTypes.shape({
-      hasPerm: PropTypes.func.isRequired,
-      connect: PropTypes.func.isRequired,
-      locale: PropTypes.string.isRequired,
-      logger: PropTypes.shape({
-        log: PropTypes.func.isRequired,
-      }).isRequired,
-      intl: PropTypes.object.isRequired,
-    }).isRequired,
+    stripes: PropTypes.object.isRequired,
     onCloseEdit: PropTypes.func,
     onClose: PropTypes.func,
     onEdit: PropTypes.func,    
@@ -53,9 +45,20 @@ class DatabaseView extends Component {
     //     </Pane>
     //   );
     // }
-
+    const detailMenu = (
+      <PaneMenu>
+        <IconButton
+          icon="edit"
+          id="clickable-editfiscalyear"
+          style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
+          onClick={this.props.onEdit}
+          href={this.props.editLink}
+          title="Edit"
+        />
+      </PaneMenu>
+    );
     return (
-      <Pane defaultWidth={this.props.paneWidth} paneTitle={_.get(initialValues, ['title'], '')} dismissible onClose={this.props.onClose}>
+      <Pane defaultWidth={this.props.paneWidth} paneTitle={_.get(initialValues, ['title'], '')} dismissible onClose={this.props.onClose} lastMenu={detailMenu}>
         <TitleManager record={_.get(initialValues, ['title'], '')} />
         <Row>
           <Col>
@@ -64,7 +67,11 @@ class DatabaseView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="URL" value={_.toString(_.get(initialValues, ['link'], ''))} />
+            <KeyValue label="URL">
+              <a href={_.toString(_.get(initialValues, ['link'], ''))} target="_new">
+                {_.toString(_.get(initialValues, ['link'], ''))}
+              </a>
+            </KeyValue>
           </Col>
         </Row>
         <Row>

@@ -15,7 +15,7 @@ class Oriole extends React.Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     showSettings: PropTypes.bool,
-    stripes: PropTypes.object,
+    stripes: PropTypes.object.isRequired,
     mutator: PropTypes.object,
   }
 
@@ -30,7 +30,7 @@ class Oriole extends React.Component {
     }
     return (
       <Switch>
-        <Route path={`${this.props.match.path}`} render={(props) => <this.connectedApp {...props} />} />;
+        <Route path={`${this.props.match.path}`} render={(props) => <this.connectedApp {...props} stripes={this.props.stripes} />} />;
         <Route path={`${this.props.match.path}/examples`} exact component={ExamplePage} />
         <Route component={() => { this.NoMatch(); }} />
       </Switch>
