@@ -24,12 +24,14 @@
   },
   "dependencies": {
     "@folio/stripes-components": "^3.0.0",
-    "@folio/stripes-form": "^0.8.200022",
+    "@folio/stripes-form": "^0.8.200024",
     "@folio/stripes-smart-components": "^1.4.23",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.0",
+    "query-string": "^6.1.0",
     "react-intl": "^2.4.0",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "redux-form": "^7.4.2"
   },
   "peerDependencies": {
     "@folio/stripes-connect": "^3.1.1",

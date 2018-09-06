@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import queryString from 'query-string';
 import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue } from '@folio/stripes-components';
 import TitleManager from '@folio/stripes-core/src/components/TitleManager';
 import DatabasePane from './DatabasePane';
@@ -38,6 +39,9 @@ class DatabaseView extends Component {
 
   render() {
     const initialValues = this.getData();
+    const { stripes, parentResources, location } = this.props;
+    console.log(parentResources);
+    const query = location.search ? queryString.parse(location.search) : {};
     // if (!initialValues) {
     //   return (
     //     <Pane id="pane-vendordetails" defaultWidth={this.props.paneWidth} paneTitle="Details" dismissible onClose={this.props.onClose}>
@@ -49,7 +53,7 @@ class DatabaseView extends Component {
       <PaneMenu>
         <IconButton
           icon="edit"
-          id="clickable-editfiscalyear"
+          id="clickable-editoriole"
           style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
           onClick={this.props.onEdit}
           href={this.props.editLink}
@@ -79,6 +83,15 @@ class DatabaseView extends Component {
             <KeyValue label="Description" value={_.get(initialValues, ['description'], '')} />
           </Col>
         </Row>
+        <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
+          <DatabasePane
+            stripes={this.props.stripes}
+            initialValues={initialValues}
+            onSubmit={(record) => { this.update(record); }}
+            onCancel={this.props.onCloseEdit}
+            parentMutator={this.props.parentMutator}
+          />
+        </Layer>
       </Pane>
     );
   }
