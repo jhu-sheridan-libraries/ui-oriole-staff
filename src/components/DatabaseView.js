@@ -7,6 +7,15 @@ import TitleManager from '@folio/stripes-core/src/components/TitleManager';
 import DatabasePane from './DatabasePane';
 
 class DatabaseView extends Component {
+  static manifest = Object.freeze({
+    query: {},
+    selResource: {
+      type: 'okapi',
+      path: 'resources/:{id}',
+      clear: false,
+    }
+  });
+
   static propTypes = {
     initialValues: PropTypes.object,
     location: PropTypes.object.isRequired,
@@ -20,6 +29,7 @@ class DatabaseView extends Component {
     paneWidth: PropTypes.string.isRequired,
     parentMutator: PropTypes.object.isRequired,
     editLink: PropTypes.string,
+    mutator: PropTypes.object,
   }
 
   constructor(props) {
@@ -35,6 +45,18 @@ class DatabaseView extends Component {
     const data = vendors.find(u => u.id === id);
 
     return data;
+  }
+
+  update = (resource) => {
+    console.log(resource);
+    console.log(this.props.mutator);
+    delete resource.resources;
+    this.props.mutator.selResource.PUT(resource).then(() => {
+      this.setState({
+        lastUpdate: new Date().toISOString(),
+      });
+      this.props.onCloseEdit();
+    });
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { PaneSet, Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, AccordionSet, Accordion, ExpandAllButton, Checkbox, Select, TextField } from '@folio/stripes-components';
+import { PaneSet, Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, AccordionSet, Accordion, ExpandAllButton, Checkbox, Select, TextField, TextArea } from '@folio/stripes-components';
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes-form';
@@ -33,29 +33,51 @@ class DatabasePane extends Component {
     onCancel: PropTypes.func,
     initialValues: PropTypes.object,
   }
+
+  getLastMenu = (id, label) => {
+    const { pristine, submitting } = this.props;
+
+    return (
+      <PaneMenu>
+        <Button
+          id={id}
+          type="submit"
+          title={label}
+          disabled={pristine || submitting}
+          buttonStyle="primary paneHeaderNewButton"
+          marginBottom0
+        >
+          {label}
+        </Button>
+      </PaneMenu>
+    );
+  }
+
   render() {
-    const { initialValues } = this.props;
+    const { initialValues, handleSubmit } = this.props;
     const firstMenu = (
       <PaneMenu>
         <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="closeX" />
       </PaneMenu>
     );
-    const lastMenu = (
-      <PaneMenu>
-        <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="closeX" />
-      </PaneMenu>
-    );
+    const lastMenu = initialValues.id ?
+      this.getLastMenu('clickable-updateuser', 'Update') :
+      this.getLastMenu('clickable-createnewuser', 'Create');
     const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
     return (
-      <div id="form-add-new-resource">
-        <Pane defaultWidth="100%" firstMenu={firstMenu} lastMenu={lastMenu} paneTitle={paneTitle}>
-          <Row>
-            <Col xs={8}>
-              <Field label="Title" name="title" id="title" component={TextField} fullWidth />
-            </Col>
-          </Row>
-        </Pane>
-      </div>
+      <form id="form-resource" onSubmit={handleSubmit}>
+        <div id="form-add-new-resource">
+          <Pane defaultWidth="100%" firstMenu={firstMenu} lastMenu={lastMenu} paneTitle={paneTitle}>
+            <Row>
+              <Col xs={8}>
+                <Field label="Title" name="title" id="title" component={TextField} fullWidth />
+                <Field label="URL" name="link" id="link" component={TextField} fullWidth />
+                <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
+              </Col>
+            </Row>
+          </Pane>
+        </div>
+      </form>
     );
   }
 }
