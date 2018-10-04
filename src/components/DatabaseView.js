@@ -94,8 +94,8 @@ class DatabaseView extends Component {
         <Row>
           <Col>
             <KeyValue label="URL">
-              <a href={_.toString(_.get(initialValues, ['link'], ''))} target="_new">
-                {_.toString(_.get(initialValues, ['link'], ''))}
+              <a href={_.toString(_.get(initialValues, ['url'], ''))} target="_new">
+                {_.toString(_.get(initialValues, ['url'], ''))}
               </a>
             </KeyValue>
           </Col>

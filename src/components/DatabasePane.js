@@ -71,7 +71,7 @@ class DatabasePane extends Component {
             <Row>
               <Col xs={8}>
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
-                <Field label="URL" name="link" id="link" component={TextField} fullWidth />
+                <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
               </Col>
             </Row>
