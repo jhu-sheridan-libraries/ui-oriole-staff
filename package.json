@@ -49,6 +49,39 @@
       "oriole": "1.0"
     },
     "queryResource": "query",
-    "permissionSets": []
+    "permissionSets": [
+      {
+        "permissionName": "module.oriole.enabled",
+        "displayName": "UI: module oriole is enabled"
+      },
+      {
+        "permissionName": "ui-oriole.view",
+        "displayName": "Oriole: Can view resources",
+        "subPermissions": [
+          "module.oriole.enabled",
+          "module.oriole.collection.get",
+          "module.oriole.item.get"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-oriole.edit",
+        "displayName": "Oriole: can edit resources",
+        "subPermissions": [
+          "ui-oriole.view",
+          "module.oriole.item.put"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui.oriole.create",
+        "displayName": "Oriole: can create resources",
+        "subPermissions": [
+          "ui-oriole.edit",
+          "module.oriole.item.post"
+        ],
+        "visible": true        
+      }
+    ]
   }
 }
