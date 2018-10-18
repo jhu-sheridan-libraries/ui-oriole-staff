@@ -1,31 +1,58 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Settings from '@folio/stripes-components/lib/Settings';
 import GeneralSettings from './general-settings';
 import SomeFeatureSettings from './some-feature-settings';
+import LocationsSettings from './LocationsSettings';
 
-/*
-  STRIPES-NEW-APP
-  Your app's settings pages are defined here.
-  The pages "general" and "some feature" are examples. Name them however you like.
-*/
+class OrioleSettings extends React.Component {
+  static propTypes = {
+    stripes: PropTypes.shape({
+      intl: PropTypes.shape({
+        formatMessage: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }
+  constructor(props) {
+    super(props);
+    const { formatMessage } = this.props.stripes.intl;
 
-export default class OrioleSettings extends React.Component {
-  pages = [
-    {
-      route: 'general',
-      label: this.props.stripes.intl.formatMessage({ id: 'ui-oriole.settings.general' }),
-      component: GeneralSettings,
-    },
-    {
-      route: 'somefeature',
-      label: this.props.stripes.intl.formatMessage({ id: 'ui-oriole.settings.some-feature' }),
-      component: SomeFeatureSettings,
-    },
-  ];
+    this.sections = [
+      {
+        label: formatMessage({ id: 'ui-oriole.general' }),
+        pages: [
+          {
+            route: 'general',
+            label: formatMessage({ id: 'ui-oriole.settings.general' }),
+            component: GeneralSettings,
+          },
+          {
+            route: 'somefeature',
+            label: formatMessage({ id: 'ui-oriole.settings.some-feature' }),
+            component: SomeFeatureSettings,
+          },
+        ]
+      },
+      {
+        label: formatMessage({ id: 'ui-oriole.categories' }),
+        pages: [
+          {
+            route: 'locations',
+            label: formatMessage({ id: 'ui-oriole.locations' }),
+            component: LocationsSettings,
+            perm: 'ui-oriole.settings.locations'
+          }
+        ]
+      }
+    ];
+  }
+
 
   render() {
     return (
-      <Settings {...this.props} pages={this.pages} paneTitle="Oriole" />
+      <Settings {...this.props} sections={this.sections} paneTitle="Oriole" />
     );
   }
 }
+
+export default OrioleSettings;

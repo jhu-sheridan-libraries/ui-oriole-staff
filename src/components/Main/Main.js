@@ -36,7 +36,7 @@ class Main extends Component {
       clear: true,
       records: 'resources',
       recordsRequired: '%{resultCount}',
-      path: 'resources',
+      path: 'oriole-resources',
       perRequest: RESULT_COUNT_INCREMENT,
       GET: {
         params: {
@@ -141,7 +141,7 @@ class Main extends Component {
           objectName="databases"
           baseRoute={packageInfo.stripes.route}
           filterConfig={filterConfig}
-          visibleColumns={['title', 'link']}
+          visibleColumns={['title', 'url']}
           resultsFormatter={resultsFormatter}
           viewRecordComponent={DatabaseView}
           // onSelectRow={onSelectRow}

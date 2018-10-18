@@ -11,7 +11,7 @@ class DatabaseView extends Component {
     query: {},
     selResource: {
       type: 'okapi',
-      path: 'resources/:{id}',
+      path: 'oriole-resources/:{id}',
       clear: false,
     }
   });
