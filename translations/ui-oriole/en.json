@@ -1,4 +1,8 @@
 {
   "title": "Oriole",
-  "resultCount": "{count, number} {count, plural, one {Record found} other {Records found}}"
+  "resultCount": "{count, number} {count, plural, one {Record found} other {Records found}}",
+  "settings.general": "General",
+  "settings.general.message": "These are your general app settings.",
+  "settings.some-feature": "Some Feature",
+  "settings.some-feature.message": "These are your settings for some app feature."
 }
