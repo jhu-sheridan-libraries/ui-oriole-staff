@@ -53,6 +53,16 @@ class DatabasePane extends Component {
     );
   }
 
+  deleteResource = (id) => {
+    const { parentMutator } = this.props;
+    parentMutator.records.DELETE({ id }).then(() => {
+      parentMutator.query.update({
+        _path: '/oriole',
+        layer: null
+      });
+    });
+  }
+
   render() {
     const { initialValues, handleSubmit } = this.props;
     const firstMenu = (
@@ -64,6 +74,7 @@ class DatabasePane extends Component {
       this.getLastMenu('clickable-updateuser', 'Update') :
       this.getLastMenu('clickable-createnewuser', 'Create');
     const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
+    const showDeleteButton = initialValues.id || false;
     return (
       <form id="form-resource" onSubmit={handleSubmit}>
         <div id="form-add-new-resource">
@@ -75,6 +86,16 @@ class DatabasePane extends Component {
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
               </Col>
             </Row>
+            <IfPermission perm="oriole.resources.item.delete">
+              <Row end="xs">
+                <Col xs={12}>
+                  {
+                    showDeleteButton &&
+                    <Button type="button" buttonStyle="danger" onClick={() => { this.deleteResource(this.props.initialValues.id); }}>Remove</Button>
+                  }
+                </Col>
+              </Row>
+            </IfPermission>
           </Pane>
         </div>
       </form>
