@@ -13,7 +13,7 @@ class DatabaseView extends Component {
       type: 'okapi',
       path: 'oriole-resources/:{id}',
       clear: false,
-    }
+    },
   });
 
   static propTypes = {
@@ -21,10 +21,18 @@ class DatabaseView extends Component {
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,
-    stripes: PropTypes.object.isRequired,
+    stripes: PropTypes.shape({
+      intl: PropTypes.object.isRequired,
+      connect: PropTypes.func.isRequired
+    }).isRequired,
+    // resources: PropTypes.shape({
+    //   locations: PropTypes.shape({
+    //     records: PropTypes.arrayOf(PropTypes.object),
+    //   })
+    // }).isRequired,
     onCloseEdit: PropTypes.func,
     onClose: PropTypes.func,
-    onEdit: PropTypes.func,    
+    onEdit: PropTypes.func,
     parentResources: PropTypes.object.isRequired,
     paneWidth: PropTypes.string.isRequired,
     parentMutator: PropTypes.object.isRequired,
@@ -83,6 +91,7 @@ class DatabaseView extends Component {
         />
       </PaneMenu>
     );
+
     return (
       <Pane defaultWidth={this.props.paneWidth} paneTitle={_.get(initialValues, ['title'], '')} dismissible onClose={this.props.onClose} lastMenu={detailMenu}>
         <TitleManager record={_.get(initialValues, ['title'], '')} />

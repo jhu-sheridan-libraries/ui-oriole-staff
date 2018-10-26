@@ -27,7 +27,11 @@ class DatabasePane extends Component {
         GET: PropTypes.func.isRequired,
       }).isRequired,
     }),
-    parentResources: PropTypes.object,
+    parentResources: PropTypes.shape({
+      locations: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }),
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
     onCancel: PropTypes.func,
@@ -64,7 +68,7 @@ class DatabasePane extends Component {
   }
 
   render() {
-    const { initialValues, handleSubmit } = this.props;
+    const { initialValues, handleSubmit, parentResources: { locations } } = this.props;
     const firstMenu = (
       <PaneMenu>
         <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="closeX" />
@@ -75,6 +79,13 @@ class DatabasePane extends Component {
       this.getLastMenu('clickable-createnewuser', 'Create');
     const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
     const showDeleteButton = initialValues.id || false;
+
+    const locationOptions = (locations.records || []).map(t => ({
+      label: t.name,
+      value: t.id,
+      selected: (initialValues.location) ? initialValues.location.id === t.id : false,
+    }));
+
     return (
       <form id="form-resource" onSubmit={handleSubmit}>
         <div id="form-add-new-resource">
@@ -84,6 +95,14 @@ class DatabasePane extends Component {
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
                 <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
+                <Field
+                  label="Location"
+                  name="locationId"
+                  id="adddatabase_location"
+                  component={Select}
+                  fullWidth
+                  dataOptions={[{ label: 'XX', value: '' }, ...locationOptions]}
+                />
               </Col>
             </Row>
             <IfPermission perm="oriole.resources.item.delete">

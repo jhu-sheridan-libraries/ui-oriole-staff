@@ -91,6 +91,15 @@ class Main extends Component {
         staticFallback: { params: {} },
       },
     },
+    locations: {
+      type: 'okapi',
+      path: 'oriole-locations',
+      params: {
+        query: 'cql.allRecords=1 sortby name',
+        limit: '40',
+      },
+      records: 'locations',
+    }
   });
 
   static propTypes = {
