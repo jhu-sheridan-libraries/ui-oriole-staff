@@ -121,6 +121,7 @@ class DatabaseView extends Component {
             onSubmit={(record) => { this.update(record); }}
             onCancel={this.props.onCloseEdit}
             parentMutator={this.props.parentMutator}
+            parentResources={this.props.parentResources}
           />
         </Layer>
       </Pane>
