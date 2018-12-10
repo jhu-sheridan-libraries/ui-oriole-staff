@@ -14,9 +14,9 @@ const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
 
 const searchableIndexes = [
-  { label: 'All (title, description)', value: 'all', makeQuery: term => `(title="${term}*" or description="*${term}*")` },
-  { label: 'Title', value: 'title', makeQuery: term => `(title="${term}*")` },
-  { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}*)` }
+  { label: 'All (title, description)', value: 'all', makeQuery: term => `(title="*${term}*" or description="*${term}*")` },
+  { label: 'Title', value: 'title', makeQuery: term => `(title="*${term}*")` },
+  { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}")` }
 ];
 const filterConfig = [];
 
@@ -91,14 +91,14 @@ class Main extends Component {
         staticFallback: { params: {} },
       },
     },
-    locations: {
+    libraries: {
       type: 'okapi',
-      path: 'oriole-locations',
+      path: 'oriole-libraries',
       params: {
         query: 'cql.allRecords=1 sortby name',
         limit: '40',
       },
-      records: 'locations',
+      records: 'libraries',
     }
   });
 

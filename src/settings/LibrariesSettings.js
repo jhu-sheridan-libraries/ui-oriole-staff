@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ControlledVocab from '@folio/stripes-smart-components/lib/ControlledVocab';
 
-class LocationsSettings extends React.Component {
+class LibrariesSettings extends React.Component {
   static propTypes = {
     stripes: PropTypes.shape({
       connect: PropTypes.func.isRequired,
@@ -23,17 +23,17 @@ class LocationsSettings extends React.Component {
     return (
       <this.connectedControlledVocab
         {...this.props}
-        baseUrl="oriole-locations"
-        records="locations"
-        label={formatMessage({ id: 'ui-oriole.locations' })}
-        labelSingular={formatMessage({ id: 'ui-oriole.locations' })}
+        baseUrl="oriole-libraries"
+        records="libraries"
+        label={formatMessage({ id: 'ui-oriole.libraries' })}
+        labelSingular={formatMessage({ id: 'ui-oriole.libraries' })}
         objectLabel={formatMessage({ id: 'ui-inventory.items' })}
         hiddenFields={['description', 'numberOfObjects']}
         nameKey="name"
-        id="locations"
+        id="libraries"
       />
     );
   }
 }
 
-export default LocationsSettings;
+export default LibrariesSettings;

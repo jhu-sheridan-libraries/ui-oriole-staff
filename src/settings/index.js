@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Settings from '@folio/stripes-components/lib/Settings';
 import GeneralSettings from './general-settings';
 import SomeFeatureSettings from './some-feature-settings';
-import LocationsSettings from './LocationsSettings';
+import LibrariesSettings from './LibrariesSettings';
 
 class OrioleSettings extends React.Component {
   static propTypes = {
@@ -37,10 +37,10 @@ class OrioleSettings extends React.Component {
         label: formatMessage({ id: 'ui-oriole.categories' }),
         pages: [
           {
-            route: 'locations',
-            label: formatMessage({ id: 'ui-oriole.locations' }),
-            component: LocationsSettings,
-            perm: 'ui-oriole.settings.locations'
+            route: 'libraries',
+            label: formatMessage({ id: 'ui-oriole.libraries' }),
+            component: LibrariesSettings,
+            perm: 'oriole.libraries.admin'
           }
         ]
       }

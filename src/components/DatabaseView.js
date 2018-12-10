@@ -18,18 +18,13 @@ class DatabaseView extends Component {
 
   static propTypes = {
     initialValues: PropTypes.object,
-    location: PropTypes.object.isRequired,
+    libraries: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,
     stripes: PropTypes.shape({
       intl: PropTypes.object.isRequired,
       connect: PropTypes.func.isRequired
     }).isRequired,
-    // resources: PropTypes.shape({
-    //   locations: PropTypes.shape({
-    //     records: PropTypes.arrayOf(PropTypes.object),
-    //   })
-    // }).isRequired,
     onCloseEdit: PropTypes.func,
     onClose: PropTypes.func,
     onEdit: PropTypes.func,

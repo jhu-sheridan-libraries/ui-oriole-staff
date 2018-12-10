@@ -28,7 +28,7 @@ class DatabasePane extends Component {
       }).isRequired,
     }),
     parentResources: PropTypes.shape({
-      locations: PropTypes.shape({
+      libraries: PropTypes.shape({
         records: PropTypes.arrayOf(PropTypes.object),
       }),
     }),
@@ -68,7 +68,7 @@ class DatabasePane extends Component {
   }
 
   render() {
-    const { initialValues, handleSubmit, parentResources: { locations } } = this.props;
+    const { initialValues, handleSubmit, parentResources: { libraries } } = this.props;
     const firstMenu = (
       <PaneMenu>
         <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="closeX" />
@@ -80,10 +80,10 @@ class DatabasePane extends Component {
     const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
     const showDeleteButton = initialValues.id || false;
 
-    const locationOptions = (locations.records || []).map(t => ({
+    const libraryOptions = (libraries.records || []).map(t => ({
       label: t.name,
       value: t.id,
-      selected: (initialValues.location) ? initialValues.location.id === t.id : false,
+      selected: (initialValues.library) ? initialValues.library.id === t.id : false,
     }));
 
     return (
@@ -96,12 +96,12 @@ class DatabasePane extends Component {
                 <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field
-                  label="Location"
-                  name="locationId"
-                  id="adddatabase_location"
+                  label="Library"
+                  name="libraryId"
+                  id="adddatabase_library"
                   component={Select}
                   fullWidth
-                  dataOptions={[{ label: 'XX', value: '' }, ...locationOptions]}
+                  dataOptions={[{ label: 'Choose a library', value: '' }, ...libraryOptions]}
                 />
               </Col>
             </Row>
