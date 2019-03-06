@@ -14,9 +14,11 @@ const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
 
 const searchableIndexes = [
-  { label: 'All (title, description)', value: 'all', makeQuery: term => `(title="*${term}*" or description="*${term}*")` },
+  { label: 'All (title, description)', value: 'all', makeQuery: term => `(keywords any ${term}*)` },
   { label: 'Title', value: 'title', makeQuery: term => `(title="*${term}*")` },
-  { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}")` }
+  { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}")` },
+  { label: 'Subject', value: 'term', makeQuery: term => `(terms=="*${term}*")` },
+  { label: 'Publisher', value: 'publisher', makeQuery: term => `(publisher=="*${term}*)` },
 ];
 const filterConfig = [];
 
@@ -27,7 +29,8 @@ class Main extends Component {
       initialValue: {
         query: '',
         filters: '',
-        sort: 'title'
+        sort: 'title',
+        qindex: 'all'
       },
     },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
@@ -91,15 +94,13 @@ class Main extends Component {
         staticFallback: { params: {} },
       },
     },
-    libraries: {
+    uniquenessValidator: {
       type: 'okapi',
-      path: 'oriole-libraries',
-      params: {
-        query: 'cql.allRecords=1 sortby name',
-        limit: '40',
-      },
-      records: 'libraries',
-    }
+      records: 'resources',
+      accumulate: 'true',
+      path: 'oriole-resources',
+      fetch: false,
+    },
   });
 
   static propTypes = {
@@ -134,11 +135,17 @@ class Main extends Component {
     });
   }
 
+  onChangeIndex = (e) => {
+    const qindex = e.target.value;
+    this.props.mutator.query.update({ qindex });
+  }
+
   render() {
     const { stripes, mutator, resources } = this.props;
     const resultsFormatter = {
       'Title': data => _.get(data, ['title'], ''),
       'URL': data => _.toString(_.get(data, ['url'], '')),
+      'Publisher': data => _.toString(_.get(data, ['publisher'], '')),
     };
 
     return (
@@ -150,7 +157,7 @@ class Main extends Component {
           objectName="databases"
           baseRoute={packageInfo.stripes.route}
           filterConfig={filterConfig}
-          visibleColumns={['title', 'url']}
+          visibleColumns={['title', 'url', 'publisher']}
           resultsFormatter={resultsFormatter}
           viewRecordComponent={DatabaseView}
           // onSelectRow={onSelectRow}

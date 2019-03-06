@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
-import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue } from '@folio/stripes-components';
+import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue, List } from '@folio/stripes-components';
 import TitleManager from '@folio/stripes-core/src/components/TitleManager';
 import DatabasePane from './DatabasePane';
 
@@ -18,11 +18,10 @@ class DatabaseView extends Component {
 
   static propTypes = {
     initialValues: PropTypes.object,
-    libraries: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,
     stripes: PropTypes.shape({
-      intl: PropTypes.object.isRequired,
+      //intl: PropTypes.object.isRequired,
       connect: PropTypes.func.isRequired
     }).isRequired,
     onCloseEdit: PropTypes.func,
@@ -43,6 +42,7 @@ class DatabaseView extends Component {
 
   getData = () => {
     const { parentResources, match: { params: { id } } } = this.props;
+    console.log(this.props);
     const vendors = (parentResources.records || {}).records || [];
     if (!vendors || vendors.length === 0 || !id) return null;
     const data = vendors.find(u => u.id === id);
@@ -51,8 +51,6 @@ class DatabaseView extends Component {
   }
 
   update = (resource) => {
-    console.log(resource);
-    console.log(this.props.mutator);
     delete resource.resources;
     this.props.mutator.selResource.PUT(resource).then(() => {
       this.setState({
@@ -64,8 +62,8 @@ class DatabaseView extends Component {
 
   render() {
     const initialValues = this.getData();
+    console.log('initialValues: ', initialValues);
     const { stripes, parentResources, location } = this.props;
-    console.log(parentResources);
     const query = location.search ? queryString.parse(location.search) : {};
     // if (!initialValues) {
     //   return (
@@ -107,6 +105,23 @@ class DatabaseView extends Component {
         <Row>
           <Col>
             <KeyValue label="Description" value={_.get(initialValues, ['description'], '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="Publisher" value={_.get(initialValues, ['publisher'], '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="Creator" value={_.get(initialValues, ['creator'], '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="Subjects">
+              <List items={_.get(initialValues, ['terms'], [])} itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>} isEmptyMessage="No subjects" />
+            </KeyValue>
           </Col>
         </Row>
         <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
