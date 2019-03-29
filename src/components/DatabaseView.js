@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
-import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue, List } from '@folio/stripes-components';
-import TitleManager from '@folio/stripes-core/src/components/TitleManager';
+import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue, List } from '@folio/stripes/components';
+import { TitleManager } from '@folio/stripes/core';
 import DatabasePane from './DatabasePane';
 
 class DatabaseView extends Component {
@@ -21,7 +21,6 @@ class DatabaseView extends Component {
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,
     stripes: PropTypes.shape({
-      //intl: PropTypes.object.isRequired,
       connect: PropTypes.func.isRequired
     }).isRequired,
     onCloseEdit: PropTypes.func,
@@ -37,16 +36,13 @@ class DatabaseView extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // this.connectedDetailsPane = this.props.stripes.connect(DatabasePane);
   }
 
   getData = () => {
     const { parentResources, match: { params: { id } } } = this.props;
-    console.log(this.props);
-    const vendors = (parentResources.records || {}).records || [];
-    if (!vendors || vendors.length === 0 || !id) return null;
-    const data = vendors.find(u => u.id === id);
-
+    const records = (parentResources.records || {}).records || [];
+    if (!records || records.length === 0 || !id) return null;
+    const data = records.find(u => u.id === id);
     return data;
   }
 
@@ -60,9 +56,12 @@ class DatabaseView extends Component {
     });
   }
 
+  onRemove = (item) => {
+    console.log('remove', item);
+  }
+
   render() {
     const initialValues = this.getData();
-    console.log('initialValues: ', initialValues);
     const { stripes, parentResources, location } = this.props;
     const query = location.search ? queryString.parse(location.search) : {};
     // if (!initialValues) {
@@ -119,8 +118,15 @@ class DatabaseView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Subjects">
-              <List items={_.get(initialValues, ['terms'], [])} itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>} isEmptyMessage="No subjects" />
+            <KeyValue label="JHU Subjects">
+              <List items={_.get(initialValues, ['tags', 'tagList'], [])} itemFormatter={(item) => <li key={item}>{item}</li>} isEmptyMessage="" />
+            </KeyValue>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="FAST Terms">
+              <List items={_.get(initialValues, ['terms'], [])} itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>} isEmptyMessage="" />
             </KeyValue>
           </Col>
         </Row>

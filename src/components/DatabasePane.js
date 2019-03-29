@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { PaneSet, Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, AccordionSet, Accordion, ExpandAllButton, Checkbox, Select, TextField, TextArea } from '@folio/stripes-components';
-import { Field } from 'redux-form';
+import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextField, TextArea, Accordion, Headline, Badge } from '@folio/stripes/components';
+import { Field, FieldArray } from 'redux-form';
 import _ from 'lodash';
-import stripesForm from '@folio/stripes-form';
+import stripesForm from '@folio/stripes/form';
 
 function validate(values, props) {
   const errors = {};
@@ -12,21 +12,10 @@ function validate(values, props) {
 
 class DatabasePane extends Component {
   static propTypes = {
-    // stripes: PropTypes.object.isRequired,
-    // handleSubmit: PropTypes.func.isRequired,
-    // onCancel: PropTypes.func,
-    // initialValues: PropTypes.object,
     stripes: PropTypes.shape({
       connect: PropTypes.func,
-      //intl: PropTypes.object.isRequired,
     }).isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    // parentMutator: PropTypes.shape({ // eslint-disable-line react/no-unused-prop-types
-    //   uniquenessValidator: PropTypes.shape({
-    //     reset: PropTypes.func.isRequired,
-    //     GET: PropTypes.func.isRequired,
-    //   }).isRequired,
-    // }).isRequired,
     parentMutator: PropTypes.object,
     parentResources: PropTypes.object,
     pristine: PropTypes.bool,
@@ -34,6 +23,9 @@ class DatabasePane extends Component {
     onCancel: PropTypes.func,
     onRemove: PropTypes.func,
     initialValues: PropTypes.object,
+    expanded: PropTypes.bool,
+    accordionId: PropTypes.string,
+    onToggle: PropTypes.func,
   }
 
   getLastMenu = (id, label) => {
@@ -65,19 +57,45 @@ class DatabasePane extends Component {
     });
   }
 
+  renderTagField = ({ input, label, type, meta: { touched, error } }) => (
+    <div>
+      <label>{label}</label>
+      <div>
+        <input {...input} type={type} placeholder={label} />
+        {touched && error && <span>{error}</span>}
+      </div>
+    </div>
+  )
+
+  renderTags = ({ fields }) => (
+    <ul>
+      <li>
+        <Button type="button" onClick={() => fields.push()}>
+          Add Tag
+        </Button>
+      </li>
+      {fields.map((tag, index) => (
+        <li key={index}>
+          <Button type="button" title="Remove Tag" onClick={() => fields.remove(index)} >Remove Tag</Button>
+          <Field name={tag} type="text" component={this.renderTagField} label={`Tag #${index + 1}`} />
+        </li>
+      ))}
+    </ul>
+  )
+
   render() {
-    const { initialValues, handleSubmit, parentResources } = this.props;
+    const { initialValues, expanded, accordionId, onToggle } = this.props;
     const firstMenu = (
       <PaneMenu>
         <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="times" />
       </PaneMenu>
     );
-    console.log(initialValues);
     const lastMenu = initialValues.id ?
       this.getLastMenu('clickable-updateuser', 'Update') :
       this.getLastMenu('clickable-createnewuser', 'Create');
     const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
     const showDeleteButton = initialValues.id || false;
+    const size = initialValues.id ? initialValues.tags.tagList.length : 0;
 
     return (
       <form id="form-resource">
@@ -90,17 +108,26 @@ class DatabasePane extends Component {
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
+                <Accordion
+                  open={expanded}
+                  id={accordionId}
+                  onToggle={onToggle}
+                  label={<Headline size="large" tag="h3">Tags</Headline>}
+                  displayWhenClosed={<Badge>{size}</Badge>}
+                >
+                  <FieldArray name="tags.tagList" id="tags" component={this.renderTags} fullWidth />
+                </Accordion>
               </Col>
             </Row>
             {/* <IfPermission perm="oriole.resources.item.delete"> */}
-              <Row end="xs">
-                <Col xs={12}>
-                  {
-                    showDeleteButton &&
-                    <Button type="button" buttonStyle="danger" onClick={() => { this.deleteResource(this.props.initialValues.id); }}>Remove</Button>
-                  }
-                </Col>
-              </Row>
+            <Row end="xs">
+              <Col xs={12}>
+                {
+                  showDeleteButton &&
+                  <Button type="button" buttonStyle="danger" onClick={() => { this.deleteResource(this.props.initialValues.id); }}>Remove</Button>
+                }
+              </Col>
+            </Row>
             {/* </IfPermission> */}
           </Pane>
         </div>
