@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ControlledVocab from '@folio/stripes-smart-components/lib/ControlledVocab';
+import { FormattedMessage } from 'react-intl';
+import { ControlledVocab } from '@folio/stripes/smart-components';
 
 class SubjectsSettings extends React.Component {
   static propTypes = {
     stripes: PropTypes.shape({
       connect: PropTypes.func.isRequired,
-      intl: PropTypes.shape({
-        formatMessage: PropTypes.func.isRequired,
-      }).isRequired,
     }).isRequired,
   };
 
@@ -18,19 +16,18 @@ class SubjectsSettings extends React.Component {
   }
 
   render() {
-    const { formatMessage } = this.props.stripes.intl;
-
     return (
       <this.connectedControlledVocab
         {...this.props}
+        dataKey={undefined}
         baseUrl="oriole-subjects"
         records="subjects"
-        label={formatMessage({ id: 'ui-oriole.subjects' })}
-        labelSingular={formatMessage({ id: 'ui-oriole.subjects' })}
-        objectLabel={formatMessage({ id: 'ui-oriole.subject' })}
+        label={<FormattedMessage id="ui-oriole.subjects" />}
+        labelSingular={<FormattedMessage id="ui-oriole.subjects" />}
+        objectLabel={<FormattedMessage id="ui-oriole.subjects" />}
         hiddenFields={['description', 'numberOfObjects']}
         nameKey="term"
-        id="subjects"
+        id="subjects-settings"
         sortby="term"
       />
     );

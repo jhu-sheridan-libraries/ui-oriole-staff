@@ -21,12 +21,11 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "eslint": "^4.8.0",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "redux": "^4.0.0"
   },
   "dependencies": {
-    "@folio/stripes-components": "^5.0.0",
-    "@folio/stripes-form": "^2.0.0",
-    "@folio/stripes-smart-components": "^2.0.1",
+    "@folio/stripes": "^2.0.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.0",
     "query-string": "^6.1.0",
@@ -36,8 +35,6 @@
     "redux-form": "^7.4.2"
   },
   "peerDependencies": {
-    "@folio/stripes-connect": "^4.0.0",
-    "@folio/stripes-core": "^3.0.1",
     "@folio/stripes-logger": "^1.0.0",
     "react": "*"
   },

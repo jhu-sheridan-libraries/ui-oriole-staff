@@ -1,22 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Settings from '@folio/stripes-components/lib/Settings';
+import { injectIntl, intlShape } from 'react-intl';
+import { Settings } from '@folio/stripes/smart-components';
 import GeneralSettings from './general-settings';
-import SomeFeatureSettings from './some-feature-settings';
 import SubjectsSettings from './SubjectsSettings';
-
+import LibrariesSettings from './LibrariesSettings';
 
 class OrioleSettings extends React.Component {
   static propTypes = {
-    stripes: PropTypes.shape({
-      intl: PropTypes.shape({
-        formatMessage: PropTypes.func.isRequired,
-      }).isRequired,
-    }).isRequired,
+    intl: intlShape.isRequired,
   }
+
   constructor(props) {
     super(props);
-    const { formatMessage } = this.props.stripes.intl;
+    const { formatMessage } = this.props.intl;
 
     this.sections = [
       {
@@ -27,11 +23,6 @@ class OrioleSettings extends React.Component {
             label: formatMessage({ id: 'ui-oriole.settings.general' }),
             component: GeneralSettings,
           },
-          {
-            route: 'somefeature',
-            label: formatMessage({ id: 'ui-oriole.settings.some-feature' }),
-            component: SomeFeatureSettings,
-          },
         ]
       },
       {
@@ -41,6 +32,12 @@ class OrioleSettings extends React.Component {
             route: 'subjects',
             label: formatMessage({ id: 'ui-oriole.subjects' }),
             component: SubjectsSettings,
+            perm: 'oriole.subjects.admin'
+          },
+          {
+            route: 'libraries',
+            label: formatMessage({ id: 'ui-oriole.libraries' }),
+            component: LibrariesSettings,
             perm: 'oriole.subjects.admin'
           }
         ]
@@ -56,4 +53,4 @@ class OrioleSettings extends React.Component {
   }
 }
 
-export default OrioleSettings;
+export default injectIntl(OrioleSettings);
