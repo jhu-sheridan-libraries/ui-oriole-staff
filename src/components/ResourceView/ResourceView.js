@@ -4,10 +4,10 @@ import _ from 'lodash';
 import queryString from 'query-string';
 import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue, List } from '@folio/stripes/components';
 import { TitleManager } from '@folio/stripes/core';
-import DatabasePane from './DatabasePane';
-import { getItemById } from '../selectors/resource';
+import ResourceEditor from '../ResourceEditor';
+import { getItemById } from '../../selectors/resource';
 
-class DatabaseView extends Component {
+class ResourceView extends Component {
   static manifest = Object.freeze({
     query: {},
     selResource: {
@@ -132,7 +132,7 @@ class DatabaseView extends Component {
           </Col>
         </Row>
         <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
-          <DatabasePane
+          <ResourceEditor
             stripes={this.props.stripes}
             onSubmit={(item) => { this.update(item); }}
             onCancel={this.props.onCloseEdit}
@@ -145,4 +145,4 @@ class DatabaseView extends Component {
   }
 }
 
-export default DatabaseView;
+export default ResourceView;

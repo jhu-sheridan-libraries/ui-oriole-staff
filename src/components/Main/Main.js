@@ -6,8 +6,8 @@ import transitionToParams from '@folio/stripes-components/util/transitionToParam
 import removeQueryParam from '@folio/stripes-components/util/removeQueryParam';
 import { filters2cql } from '@folio/stripes-components/lib/FilterGroups';
 import packageInfo from '../../../package';
-import DatabaseView from '../DatabaseView';
-import DatabasePane from '../DatabasePane';
+import ResourceView from '../ResourceView';
+import ResourceEditor from '../ResourceEditor';
 import css from './Main.css';
 
 const INITIAL_RESULT_COUNT = 30;
@@ -159,10 +159,10 @@ class Main extends Component {
           filterConfig={filterConfig}
           visibleColumns={['title', 'url', 'publisher']}
           resultsFormatter={resultsFormatter}
-          viewRecordComponent={DatabaseView}
+          viewRecordComponent={ResourceView}
           // onSelectRow={onSelectRow}
           onCreate={this.create}
-          editRecordComponent={DatabasePane}
+          editRecordComponent={ResourceEditor}
           newRecordInitialValues={{}}
           initialResultCount={INITIAL_RESULT_COUNT}
           resultCountIncrement={RESULT_COUNT_INCREMENT}

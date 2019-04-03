@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextField, TextArea, Accordion, Headline, Badge } from '@folio/stripes/components';
-import { Field, FieldArray } from 'redux-form';
+import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
-import EditTags from './EditTags';
-import { getItemById } from '../selectors/resource';
+import EditTags from '../EditTags';
+import { getItemById } from '../../selectors/resource';
 
 function validate(values, props) {
   const errors = {};
   return errors;
 }
 
-class DatabasePane extends Component {
+class ResourceEditor extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     stripes: PropTypes.shape({
@@ -65,32 +65,6 @@ class DatabasePane extends Component {
     });
   }
 
-  renderTagField = ({ input, label, type, meta: { touched, error } }) => (
-    <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} type={type} placeholder={label} />
-        {touched && error && <span>{error}</span>}
-      </div>
-    </div>
-  )
-
-  renderTags = ({ fields }) => (
-    <ul>
-      <li>
-        <Button type="button" onClick={() => fields.push()}>
-          Add Tag
-        </Button>
-      </li>
-      {fields.map((tag, index) => (
-        <li key={index}>
-          <Button type="button" title="Remove Tag" onClick={() => fields.remove(index)} >Remove Tag</Button>
-          <Field name={tag} type="text" component={this.renderTagField} label={`Tag #${index + 1}`} />
-        </li>
-      ))}
-    </ul>
-  )
-
   render() {
     const { parentResources, expanded, accordionId, onToggle, match: { params: { id } } } = this.props;
     const initialValues = getItemById(parentResources, id);
@@ -119,10 +93,10 @@ class DatabasePane extends Component {
             <Row>
               <Col xs={8}>
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
-                <Field label="URL" name="url" id="url" component={TextField} fullWidth />
+                {/* <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
-                <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
+                <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth /> */}
                 <this.connectedEditTags {...this.props} heading="Tags" />
               </Col>
             </Row>
@@ -150,4 +124,4 @@ export default stripesForm({
   asyncBlurFields: ['title'],
   navigationCheck: true,
   enableReinitialize: true,
-})(DatabasePane);
+})(ResourceEditor);
