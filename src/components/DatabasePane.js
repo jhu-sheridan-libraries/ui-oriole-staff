@@ -4,6 +4,8 @@ import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextF
 import { Field, FieldArray } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
+import EditTags from './EditTags';
+import { getItemById } from '../selectors/resource';
 
 function validate(values, props) {
   const errors = {};
@@ -12,6 +14,7 @@ function validate(values, props) {
 
 class DatabasePane extends Component {
   static propTypes = {
+    match: PropTypes.object.isRequired,
     stripes: PropTypes.shape({
       connect: PropTypes.func,
     }).isRequired,
@@ -26,6 +29,11 @@ class DatabasePane extends Component {
     expanded: PropTypes.bool,
     accordionId: PropTypes.string,
     onToggle: PropTypes.func,
+  }
+
+  constructor(props) {
+    super();
+    this.connectedEditTags = props.stripes.connect(EditTags);
   }
 
   getLastMenu = (id, label) => {
@@ -84,18 +92,25 @@ class DatabasePane extends Component {
   )
 
   render() {
-    const { initialValues, expanded, accordionId, onToggle } = this.props;
+    const { parentResources, expanded, accordionId, onToggle, match: { params: { id } } } = this.props;
+    const initialValues = getItemById(parentResources, id);
     const firstMenu = (
       <PaneMenu>
         <IconButton id="clickable-closeneworioledialog" onClick={this.props.onCancel} title="Close" icon="times" />
       </PaneMenu>
     );
-    const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-updateuser', 'Update') :
-      this.getLastMenu('clickable-createnewuser', 'Create');
-    const paneTitle = initialValues.id ? <span>Edit: {_.get(initialValues, ['title'], '')} </span> : 'Create Resource';
-    const showDeleteButton = initialValues.id || false;
-    const size = initialValues.id ? initialValues.tags.tagList.length : 0;
+    let lastMenu;
+    let paneTitle;
+    let showDeleteButton;
+    if (typeof id === 'undefined') {
+      lastMenu = this.getLastMenu('clickable-createnewuser', 'Create');
+      paneTitle = 'Create Resource';
+      showDeleteButton = false;
+    } else {
+      lastMenu = this.getLastMenu('clickable-updateuser', 'Update');
+      paneTitle = <span>Edit: {_.get(initialValues, ['title'], '')} </span>;
+      showDeleteButton = true;
+    }
 
     return (
       <form id="form-resource">
@@ -108,15 +123,7 @@ class DatabasePane extends Component {
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
-                <Accordion
-                  open={expanded}
-                  id={accordionId}
-                  onToggle={onToggle}
-                  label={<Headline size="large" tag="h3">Tags</Headline>}
-                  displayWhenClosed={<Badge>{size}</Badge>}
-                >
-                  <FieldArray name="tags.tagList" id="tags" component={this.renderTags} fullWidth />
-                </Accordion>
+                <this.connectedEditTags {...this.props} heading="Tags" />
               </Col>
             </Row>
             {/* <IfPermission perm="oriole.resources.item.delete"> */}

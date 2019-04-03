@@ -1,0 +1,11 @@
+.removeTagButton{
+  & .removeTagIcon{
+    fill: #999;
+    transition: fill .2s ease;
+  }
+  &:hover{
+    & .removeTagIcon{
+      fill: #555;
+    }
+  }
+}
