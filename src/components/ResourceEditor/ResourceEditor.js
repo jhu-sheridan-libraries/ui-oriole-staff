@@ -93,10 +93,10 @@ class ResourceEditor extends Component {
             <Row>
               <Col xs={8}>
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
-                {/* <Field label="URL" name="url" id="url" component={TextField} fullWidth />
+                <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
-                <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth /> */}
+                <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
                 <this.connectedEditTags {...this.props} heading="Tags" />
               </Col>
             </Row>
