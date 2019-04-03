@@ -30,8 +30,8 @@ class Oriole extends React.Component {
     }
     return (
       <Switch>
-        <Route path={`${this.props.match.path}`} render={(props) => <this.connectedApp {...props} stripes={this.props.stripes} />} />;
         <Route path={`${this.props.match.path}/examples`} exact component={ExamplePage} />
+        <Route path={`${this.props.match.path}`} render={(props) => <this.connectedApp {...props} stripes={this.props.stripes} />} />;
         <Route component={() => { this.NoMatch(); }} />
       </Switch>
     );
