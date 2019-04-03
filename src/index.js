@@ -6,10 +6,9 @@ import Main from './components/Main';
 import ExamplePage from './routes/example-page';
 import Settings from './settings';
 
-/*
-  STRIPES-NEW-APP
-  This is the main entry point into your new app.
-*/
+/**
+ *  This is the main entry point into Oriole
+ */
 
 class Oriole extends React.Component {
   static propTypes = {
