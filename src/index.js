@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
+import { Route, Switch } from 'react-router-dom';
 import Main from './components/Main';
-import ExamplePage from './routes/example-page';
+import ExamplePage from './components/ExamplePage';
 import Settings from './settings';
 
 /**

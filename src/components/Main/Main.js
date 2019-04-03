@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import SearchAndSort from '@folio/stripes-smart-components/lib/SearchAndSort';
+import { SearchAndSort } from '@folio/stripes/smart-components';
 import transitionToParams from '@folio/stripes-components/util/transitionToParams';
 import removeQueryParam from '@folio/stripes-components/util/removeQueryParam';
 import { filters2cql } from '@folio/stripes-components/lib/FilterGroups';

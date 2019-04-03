@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
-import Paneset from '@folio/stripes-components/lib/Paneset';
-import Pane from '@folio/stripes-components/lib/Pane';
-import Button from '@folio/stripes-components/lib/Button';
-import Headline from '@folio/stripes-components/lib/Headline';
-import GreetingModal from '../components/greeting-modal';
+import { Pane, Paneset, Button, Headline } from '@folio/stripes/components';
+import GreetingModal from '../GreetingModal';
 
 /*
   STRIPES-NEW-APP
