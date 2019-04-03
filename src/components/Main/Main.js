@@ -14,10 +14,11 @@ const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
 
 const searchableIndexes = [
-  { label: 'All (title, description)', value: 'all', makeQuery: term => `(keywords any ${term}*)` },
+  { label: 'All (Keywords)', value: 'all', makeQuery: term => `(keywords any ${term}*)` },
   { label: 'Title', value: 'title', makeQuery: term => `(title="*${term}*")` },
   { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}")` },
-  { label: 'Subject', value: 'term', makeQuery: term => `(terms=="*${term}*")` },
+  { label: 'FAST Term', value: 'term', makeQuery: term => `(terms=="*${term}*")` },
+  { label: 'JHU Subject', value: 'jhu_subject', makeQuery: term => `(tags.tagList=/respectAccents "${term}")` },
   { label: 'Publisher', value: 'publisher', makeQuery: term => `(publisher=="*${term}*)` },
 ];
 const filterConfig = [];
@@ -29,8 +30,7 @@ class Main extends Component {
       initialValue: {
         query: '',
         filters: '',
-        sort: 'title',
-        qindex: 'all'
+        sort: 'title'
       },
     },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
