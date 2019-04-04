@@ -7,15 +7,25 @@ import css from './TagList.css';
 
 class TagList extends React.Component {
   static propTypes = {
-    onChangeSearch: PropTypes.func.isRequired,
     onClickItem: PropTypes.func.isRequired,
     items: PropTypes.arrayOf(PropTypes.string),
     intl: intlShape.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: '',
+    };
+  }
+
+  handleSearchChange = e => {
+    const searchTerm = e.target.value;
+    this.setState({ searchTerm });
+  }
+
   render() {
-    const { onChangeSearch, onClickItem, intl } = this.props;
-    const handleSearchChange = e => onChangeSearch(e);
+    const { onClickItem, intl, items } = this.props;
     const handleItemClick = item => onClickItem(item);
 
     const TagDDFormatter = item => (
@@ -26,19 +36,20 @@ class TagList extends React.Component {
       </li>
     );
 
+    const filteredItems = items
+      .filter(item => item.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+      .sort((a, b) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1));
     return (
       <div className={css.root}>
         <TextField
           noBorder
           placeholder={intl.formatMessage({ id: 'ui-oriole.search' })}
           startControl={<Icon icon="search" />}
-          onChange={handleSearchChange}
+          onChange={this.handleSearchChange}
         />
         <List
           itemFormatter={TagDDFormatter}
-          items={this.props.items.sort((a, b) => {
-            return (a.toLowerCase() < b.toLowerCase() ? -1 : 1);
-          })}
+          items={filteredItems}
           listClass={css.TagList}
         />
       </div>

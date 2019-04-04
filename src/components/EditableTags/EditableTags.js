@@ -29,32 +29,13 @@ class EditableTags extends React.Component {
 
     this.state = {
       addTagOpen: false,
-      searchTerm: '',
     };
-  }
-
-  // componentDidMount() {
-  //   console.log('mount');
-  //   this.getTags();
-  // }
-
-  // getTags = () => {
-  //   return this.props.mutator.availableTags.GET().then(tags => {
-  //     console.log(tags);
-  //     this.setState({ availableTags: tags });
-  //   });
-  // }
-
-  onChangeSearch = e => {
-    const searchTerm = e.target.vaule;
-    this.setState({ searchTerm });
   }
 
   onToggleAddTagDD = () => {
     const isOpen = this.state.addTagOpen;
     this.setState({
       addTagOpen: !isOpen,
-      searchTerm: ''
     });
   }
 
@@ -121,7 +102,6 @@ class EditableTags extends React.Component {
       <TagList
         items={this.props.availableTags}
         onClickItem={this.addTagHandler}
-        onChangeSearch={this.onChangeSearch}
       />
     );
 
