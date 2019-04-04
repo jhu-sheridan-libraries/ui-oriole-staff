@@ -59,7 +59,7 @@ class ResourceEditor extends Component {
     const { parentMutator } = this.props;
     parentMutator.records.DELETE({ id }).then(() => {
       parentMutator.query.update({
-        _path: '/oriole-resources',
+        _path: '/oriole/resources',
         layer: null
       });
     });

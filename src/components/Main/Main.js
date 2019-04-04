@@ -39,7 +39,7 @@ class Main extends Component {
       clear: true,
       records: 'resources',
       recordsRequired: '%{resultCount}',
-      path: 'oriole-resources',
+      path: 'oriole/resources',
       perRequest: RESULT_COUNT_INCREMENT,
       GET: {
         params: {
@@ -98,7 +98,7 @@ class Main extends Component {
       type: 'okapi',
       records: 'resources',
       accumulate: 'true',
-      path: 'oriole-resources',
+      path: 'oriole/resources',
       fetch: false,
     },
   });

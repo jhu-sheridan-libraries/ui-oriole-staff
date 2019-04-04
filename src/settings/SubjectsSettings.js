@@ -20,7 +20,7 @@ class SubjectsSettings extends React.Component {
       <this.connectedControlledVocab
         {...this.props}
         dataKey={undefined}
-        baseUrl="oriole-subjects"
+        baseUrl="oriole/subjects"
         records="subjects"
         label={<FormattedMessage id="ui-oriole.subjects" />}
         labelSingular={<FormattedMessage id="ui-oriole.subjects" />}

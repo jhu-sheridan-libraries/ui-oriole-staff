@@ -8,7 +8,7 @@ class EditTags extends React.Component {
     availableTags: {
       type: 'okapi',
       records: 'tags',
-      path: 'oriole-tags',
+      path: 'oriole/tags',
     },
   });
 

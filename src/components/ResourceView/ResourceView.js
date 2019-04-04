@@ -12,7 +12,7 @@ class ResourceView extends Component {
     query: {},
     selResource: {
       type: 'okapi',
-      path: 'oriole-resources/:{id}',
+      path: 'oriole/resources/:{id}',
       clear: false,
     },
   });
