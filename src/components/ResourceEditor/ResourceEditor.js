@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextField, TextArea, Accordion, Headline, Badge } from '@folio/stripes/components';
+import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextField, TextArea, Accordion, Headline, Badge, KeyValue } from '@folio/stripes/components';
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
 import EditTags from '../EditTags';
-import { getItemById } from '../../selectors/resource';
+import { getItemById, getIdentifier } from '../../selectors/resource';
 
 function validate(values, props) {
   const errors = {};
@@ -94,6 +94,10 @@ class ResourceEditor extends Component {
               <Col xs={8}>
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
                 <Field label="URL" name="url" id="url" component={TextField} fullWidth />
+                {
+                  typeof id !== 'undefined' &&
+                  <KeyValue label="JHU ID" value={_.get(initialValues, ['altId'])} />
+                }
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />

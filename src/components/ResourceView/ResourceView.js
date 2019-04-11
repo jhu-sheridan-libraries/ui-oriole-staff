@@ -104,6 +104,11 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
+            <KeyValue label="JHU ID" value={_.get(record, ['altId'])} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <KeyValue label="Description" value={_.get(record, ['description'], '')} />
           </Col>
         </Row>
