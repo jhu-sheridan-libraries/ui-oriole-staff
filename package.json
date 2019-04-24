@@ -25,18 +25,24 @@
     "redux": "^4.0.0"
   },
   "dependencies": {
-    "@folio/stripes": "^2.2.0",
+    "@folio/stripes": "^2.4.0",
+    "@folio/organization": "2.8.1",
+    "@folio/users": "2.21.1",
+    "@folio/developer": "1.8.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.0",
     "query-string": "^6.1.0",
+    "react": "~16.8.3",
+    "react-dom": "~16.8.3", 
     "react-hot-loader": "^4.3.12",
     "react-intl": "^2.5.0",
+    "react-redux": "~5.1.1", 
     "react-router-dom": "^4.1.1",
+    "redux": "~3.7.2",
     "redux-form": "^7.4.2"
   },
   "peerDependencies": {
-    "@folio/stripes-logger": "^1.0.0",
-    "react": "*"
+    "@folio/stripes-logger": "^1.0.0"
   },
   "stripes": {
     "type": "app",

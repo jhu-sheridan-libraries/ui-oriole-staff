@@ -84,6 +84,17 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@folio/developer@1.8.0":
+  version "1.8.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/developer/-/developer-1.8.0.tgz#ec270f6ae3ba75dbc4ea7d46e6c35d69b275a3f6"
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+    react-hot-loader "^4.3.12"
+    react-intl "^2.8.0"
+    react-router-dom "^4.0.0"
+    redux-form "^7.0.3"
+
 "@folio/eslint-config-stripes@^1.1.0":
   version "1.1.100027"
   resolved "https://repository.folio.org/repository/npm-folioci/@folio/eslint-config-stripes/-/eslint-config-stripes-1.1.100027.tgz#2a1d770475e3924fa4ac4026997dbb0524e64330"
@@ -95,7 +106,25 @@
     eslint-plugin-jsx-a11y "^6.0.3"
     eslint-plugin-react "^7.6.0"
 
-"@folio/react-intl-safe-html@^1.0.2":
+"@folio/organization@2.8.1":
+  version "2.8.1"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/organization/-/organization-2.8.1.tgz#b70b5b3a615e29795902faacbfd40c75ac405241"
+  dependencies:
+    "@folio/react-intl-safe-html" "^1.0.1"
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+    react-intl "^2.3.0"
+    redux-form "^7.0.3"
+
+"@folio/plugin-find-user@^1.1.0":
+  version "1.6.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/plugin-find-user/-/plugin-find-user-1.6.0.tgz#37c2cef125038ca2628f475ed88f1e17de8e4c59"
+  dependencies:
+    "@folio/users" "^2.17.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
+"@folio/react-intl-safe-html@^1.0.0", "@folio/react-intl-safe-html@^1.0.1", "@folio/react-intl-safe-html@^1.0.2":
   version "1.0.2"
   resolved "https://repository.folio.org/repository/npm-folio/@folio/react-intl-safe-html/-/react-intl-safe-html-1.0.2.tgz#7b5c087653a077de721db6e68703c52906a5b523"
   dependencies:
@@ -254,9 +283,9 @@
     mousetrap "^1.6.1"
     prop-types "^15.5.10"
 
-"@folio/stripes-smart-components@~2.3.0":
-  version "2.3.0"
-  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-smart-components/-/stripes-smart-components-2.3.0.tgz#0da3841f2d50262449abe2e8e4fac3a668840da4"
+"@folio/stripes-smart-components@~2.4.0":
+  version "2.4.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-smart-components/-/stripes-smart-components-2.4.0.tgz#e93a7c6c517fdcb8b94708b90666f5a375952d4f"
   dependencies:
     "@folio/react-intl-safe-html" "^1.0.2"
     "@folio/stripes-components" "~5.1.0"
@@ -285,21 +314,39 @@
     lodash "^4.17.4"
     query-string "^5.0.0"
 
-"@folio/stripes@^2.2.0":
-  version "2.3.0"
-  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes/-/stripes-2.3.0.tgz#bbc39ed405d2183061d38ece2bce00884179542c"
+"@folio/stripes@^2.4.0":
+  version "2.4.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes/-/stripes-2.4.0.tgz#d5887762bdde2cc85ec102e3a65932ce6d12cbae"
   dependencies:
     "@folio/stripes-components" "~5.1.0"
     "@folio/stripes-connect" "~5.0.0"
     "@folio/stripes-core" "~3.3.0"
     "@folio/stripes-form" "~2.3.0"
     "@folio/stripes-logger" "~1.0.0"
-    "@folio/stripes-smart-components" "~2.3.0"
+    "@folio/stripes-smart-components" "~2.4.0"
     "@folio/stripes-util" "~1.3.0"
     react "~16.8.6"
     react-dom "~16.8.6"
     react-redux "~5.1.1"
     redux "~3.7.2"
+
+"@folio/users@2.21.1", "@folio/users@^2.17.0":
+  version "2.21.1"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/users/-/users-2.21.1.tgz#a51793829cf3e016c1b86b8f43bb7b3bd90d5bd7"
+  dependencies:
+    "@folio/react-intl-safe-html" "^1.0.0"
+    hashcode "^1.0.3"
+    lodash "^4.17.4"
+    moment "^2.22.2"
+    prop-types "^15.5.10"
+    query-string "^5.0.0"
+    react-hot-loader "^4.3.12"
+    react-intl "^2.5.0"
+    react-router-dom "^4.0.0"
+    redux-form "^7.0.3"
+    uuid "^3.0.1"
+  optionalDependencies:
+    "@folio/plugin-find-user" "^1.1.0"
 
 "@types/q@^1.5.1":
   version "1.5.1"
@@ -3623,6 +3670,10 @@ hasha@^2.2.0:
     is-stream "^1.0.1"
     pinkie-promise "^2.0.0"
 
+hashcode@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/hashcode/-/hashcode-1.0.3.tgz#d8474e9e67658048ccc7e54840b5662202f4837f"
+
 he@1.2.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
@@ -4780,7 +4831,7 @@ moment-timezone@^0.5.14, moment-timezone@^0.5.17:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.17.1, moment@^2.19.1, moment@^2.22.1:
+"moment@>= 2.9.0", moment@^2.17.1, moment@^2.19.1, moment@^2.22.1, moment@^2.22.2:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
@@ -6011,16 +6062,7 @@ react-deep-force-update@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.1.2.tgz#3d2ae45c2c9040cbb1772be52f8ea1ade6ca2ee1"
 
-react-dom@^16.8.3:
-  version "16.8.3"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.3.tgz#ae236029e66210783ac81999d3015dfc475b9c32"
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.3"
-
-react-dom@^16.8.6, react-dom@~16.8.6:
+react-dom@^16.8.6, react-dom@~16.8.3, react-dom@~16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   dependencies:
@@ -6059,7 +6101,7 @@ react-hot-loader@^4.3.10, react-hot-loader@^4.3.12:
     shallowequal "^1.0.2"
     source-map "^0.7.3"
 
-react-intl@^2.4.0, react-intl@^2.5.0:
+react-intl@^2.3.0, react-intl@^2.4.0, react-intl@^2.5.0, react-intl@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.8.0.tgz#20b0c1f01d1292427768aa8ec9e51ab7e36503ba"
   dependencies:
@@ -6177,7 +6219,7 @@ react-transition-group@^2.2.0, react-transition-group@^2.2.1, react-transition-g
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@^16.8.6, react@~16.8.6:
+react@^16.8.6, react@~16.8.3, react@~16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   dependencies:
@@ -6299,13 +6341,6 @@ redux@^3.6.0, redux@~3.7.2:
     lodash-es "^4.2.1"
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
-
-redux@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
-  dependencies:
-    loose-envify "^1.4.0"
-    symbol-observable "^1.2.0"
 
 regenerate@^1.2.1:
   version "1.4.0"
@@ -6595,13 +6630,6 @@ sanitize-html@1.18.2:
 sax@>=0.6.0, sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
-
-scheduler@^0.13.3:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.3.tgz#bed3c5850f62ea9c716a4d781f9daeb9b2a58896"
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.13.4:
   version "0.13.4"
@@ -7081,7 +7109,7 @@ symbol-observable@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
 
-symbol-observable@^1.0.2, symbol-observable@^1.0.3, symbol-observable@^1.2.0:
+symbol-observable@^1.0.2, symbol-observable@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
