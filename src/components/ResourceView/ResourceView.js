@@ -85,6 +85,18 @@ class ResourceView extends Component {
       </PaneMenu>
     );
 
+    let passwords;
+    if (_.get(record, ['passwords'])) {
+      passwords =
+        <Row>
+          <Col>
+            <KeyValue label="Passwords" value={_.get(record, ['passwords'])} />
+          </Col>
+        </Row>;
+    } else {
+      passwords = '';
+    }
+
     return (
       <Pane defaultWidth={this.props.paneWidth} paneTitle={_.get(record, ['title'], '')} dismissible onClose={this.props.onClose} lastMenu={detailMenu}>
         <TitleManager record={_.get(record, ['title'], '')} />
@@ -122,6 +134,7 @@ class ResourceView extends Component {
             <KeyValue label="Creator" value={_.get(record, ['creator'], '')} />
           </Col>
         </Row>
+        { passwords }
         <Row>
           <Col>
             <KeyValue label="JHU Subjects">
