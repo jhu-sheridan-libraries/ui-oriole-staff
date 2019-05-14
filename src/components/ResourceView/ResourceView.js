@@ -6,6 +6,7 @@ import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, Accord
 import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
+import Notes from '../ViewSections/Notes';
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -36,7 +37,11 @@ class ResourceView extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      sections: {
+        notesSection: false
+      }
+    };
   }
 
   getData = () => {
@@ -59,6 +64,14 @@ class ResourceView extends Component {
 
   onRemove = (item) => {
     console.log('remove', item);
+  }
+
+  handleSectionToggle = ({ id }) => {
+    this.setState(curState => {
+      const newState = _.cloneDeep(curState);
+      newState.sections[id] = !newState.sections[id];
+      return newState;
+    });
   }
 
   render() {
@@ -120,6 +133,16 @@ class ResourceView extends Component {
         <Row>
           <Col>
             <KeyValue label="Creator" value={_.get(record, ['creator'], '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Notes
+              accordionId="notesSection"
+              record={record}
+              expanded={this.state.sections.notesSection}
+              onToggle={this.handleSectionToggle}
+            />
           </Col>
         </Row>
         <Row>
