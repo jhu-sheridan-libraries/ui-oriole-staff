@@ -95,7 +95,18 @@
     eslint-plugin-jsx-a11y "^6.0.3"
     eslint-plugin-react "^7.6.0"
 
-"@folio/react-intl-safe-html@^1.0.2":
+"@folio/organization@^2.8.1":
+  version "2.8.1"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/organization/-/organization-2.8.1.tgz#b70b5b3a615e29795902faacbfd40c75ac405241"
+  integrity sha512-PMBcUj3PWhJb0mOk4chVrIQAY8M0oDhXhr5XTgFw/JNC3vbUxCk5ZD6iCCon88Yf5Q0Pe9htwC37mpB1FcnhwA==
+  dependencies:
+    "@folio/react-intl-safe-html" "^1.0.1"
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+    react-intl "^2.3.0"
+    redux-form "^7.0.3"
+
+"@folio/react-intl-safe-html@^1.0.1", "@folio/react-intl-safe-html@^1.0.2":
   version "1.0.2"
   resolved "https://repository.folio.org/repository/npm-folio/@folio/react-intl-safe-html/-/react-intl-safe-html-1.0.2.tgz#7b5c087653a077de721db6e68703c52906a5b523"
   dependencies:
@@ -6058,6 +6069,17 @@ react-hot-loader@^4.3.10, react-hot-loader@^4.3.12:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
     source-map "^0.7.3"
+
+react-intl@^2.3.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.9.0.tgz#c97c5d17d4718f1575fdbd5a769f96018a3b1843"
+  integrity sha512-27jnDlb/d2A7mSJwrbOBnUgD+rPep+abmoJE511Tf8BnoONIAUehy/U1zZCHGO17mnOwMWxqN4qC0nW11cD6rA==
+  dependencies:
+    hoist-non-react-statics "^3.3.0"
+    intl-format-cache "^2.0.5"
+    intl-messageformat "^2.1.0"
+    intl-relativeformat "^2.1.0"
+    invariant "^2.1.1"
 
 react-intl@^2.4.0, react-intl@^2.5.0:
   version "2.8.0"
