@@ -14,10 +14,17 @@ import {
   Headline,
   KeyValue,
 } from '@folio/stripes/components';
-import css from './EditableTags.css';
-import TagList from '../TagList';
+import css from './TagList.css';
+import SearchableList from '../../SearchableList';
 
-class EditableTags extends React.Component {
+class TagList extends React.Component {
+  static manifest = Object.freeze({
+    availableTags: {
+      type: 'okapi',
+      records: 'tags',
+      path: 'oriole/tags',
+    },
+  });
 
   static propTypes = {
     heading: PropTypes.node.isRequired,
@@ -30,6 +37,11 @@ class EditableTags extends React.Component {
     onToggle: PropTypes.func,
     name: PropTypes.string,
     isEditing: PropTypes.bool,
+    resources: PropTypes.shape({
+      availableTags: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.string),
+      }),
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -108,9 +120,10 @@ class EditableTags extends React.Component {
   };
 
   render() {
+    const availableTags = (this.props.resources.availableTags || {}).records || [];
     const tagsDD = (
-      <TagList
-        items={this.props.availableTags}
+      <SearchableList
+        items={availableTags}
         onClickItem={this.addTagHandler}
       />
     );
@@ -170,4 +183,4 @@ class EditableTags extends React.Component {
   }
 }
 
-export default injectIntl(EditableTags);
+export default injectIntl(TagList);

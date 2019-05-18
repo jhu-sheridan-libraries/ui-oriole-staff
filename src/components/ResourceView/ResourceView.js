@@ -20,7 +20,7 @@ import {
 import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
-import EditTags from '../EditTags';
+import TagList from '../ViewSections/TagList';
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -56,7 +56,7 @@ class ResourceView extends Component {
         notesSection: false
       }
     };
-    this.connectedEditTags = props.stripes.connect(EditTags);
+    this.connectedEditTags = props.stripes.connect(TagList);
   }
 
   getData = () => {
@@ -157,17 +157,6 @@ class ResourceView extends Component {
           </Col>
         </Row>
         <this.connectedEditTags {...this.props} heading="Tags" initialValues={record} isEditing={false} />
-        <Row>
-          <Col>
-            <KeyValue label="JHU Subjects">
-              <List
-                items={_.get(record, ['tags', 'tagList'], [])}
-                itemFormatter={(item) => <li key={item}>{item}</li>}
-                isEmptyMessage=""
-              />
-            </KeyValue>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <KeyValue label="FAST Terms">

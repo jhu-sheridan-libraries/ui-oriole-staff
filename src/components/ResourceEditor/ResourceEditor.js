@@ -4,7 +4,7 @@ import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextF
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
-import EditTags from '../EditTags';
+import TagList from '../ViewSections/TagList';
 import { getItemById, getIdentifier } from '../../selectors/resource';
 
 function validate(values, props) {
@@ -33,7 +33,7 @@ class ResourceEditor extends Component {
 
   constructor(props) {
     super();
-    this.connectedEditTags = props.stripes.connect(EditTags);
+    this.connectedEditTags = props.stripes.connect(TagList);
   }
 
   getLastMenu = (id, label) => {

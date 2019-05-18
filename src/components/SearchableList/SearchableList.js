@@ -3,9 +3,9 @@ import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Icon, TextField, List } from '@folio/stripes/components';
-import css from './TagList.css';
+import css from './SearchableList.css';
 
-class TagList extends React.Component {
+class SearchableList extends React.Component {
   static propTypes = {
     onClickItem: PropTypes.func.isRequired,
     items: PropTypes.arrayOf(PropTypes.string),
@@ -57,4 +57,4 @@ class TagList extends React.Component {
   }
 }
 
-export default injectIntl(TagList);
+export default injectIntl(SearchableList);
