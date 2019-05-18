@@ -19,7 +19,8 @@ class EditTags extends React.Component {
         records: PropTypes.arrayOf(PropTypes.string),
       }),
     }).isRequired,
-  }
+    isEditing: PropTypes.bool,
+  };
 
   render() {
     const { resources } = this.props;

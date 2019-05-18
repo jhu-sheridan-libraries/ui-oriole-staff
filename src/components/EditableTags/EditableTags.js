@@ -3,11 +3,22 @@ import React from 'react';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
-import { Icon, Button, Dropdown, DropdownMenu, Accordion, Badge, List, Headline } from '@folio/stripes/components';
+import {
+  Icon,
+  Button,
+  Dropdown,
+  DropdownMenu,
+  Accordion,
+  Badge,
+  List,
+  Headline,
+  KeyValue,
+} from '@folio/stripes/components';
 import css from './EditableTags.css';
 import TagList from '../TagList';
 
 class EditableTags extends React.Component {
+
   static propTypes = {
     heading: PropTypes.node.isRequired,
     initialValues: PropTypes.object,
@@ -18,6 +29,7 @@ class EditableTags extends React.Component {
     expanded: PropTypes.bool,
     onToggle: PropTypes.func,
     name: PropTypes.string,
+    isEditing: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -37,12 +49,12 @@ class EditableTags extends React.Component {
     this.setState({
       addTagOpen: !isOpen,
     });
-  }
+  };
 
   addTagHandler = tag => {
     this.fields.unshift(tag);
     setTimeout(() => this.onToggleAddTagDD());
-  }
+  };
 
   // isTagAvailable = (tag) => {
   //   const listedTags = this.fields ? this.fields.getAll() : this.props.initialValues.tags;
@@ -55,7 +67,7 @@ class EditableTags extends React.Component {
   removeTag = (index) => {
     this.fields.remove(index);
     setTimeout(() => this.forceUpdate());
-  }
+  };
 
   renderItem = (item, index) => {
     return (
@@ -81,7 +93,7 @@ class EditableTags extends React.Component {
         </FormattedMessage>
       </li>
     );
-  }
+  };
 
   renderList = ({ fields }) => {
     this.fields = fields;
@@ -93,11 +105,9 @@ class EditableTags extends React.Component {
         isEmptyMessage={<FormattedMessage id="ui-oriole.tags.empty" />}
       />
     );
-  }
+  };
 
   render() {
-    // const { availableTags } = this.props.resources;
-    // //const availableTags = resources.availableTags;
     const tagsDD = (
       <TagList
         items={this.props.availableTags}
@@ -125,8 +135,27 @@ class EditableTags extends React.Component {
       </Dropdown>
     );
 
-    const { initialValues, expanded, accordionId, onToggle } = this.props;
+    const { initialValues, expanded, accordionId, onToggle, isEditing } = this.props;
     const size = initialValues.id ? initialValues.tags.tagList.length : 0;
+    let tagList;
+    if (isEditing) {
+      tagList = (
+        <div>
+          <FieldArray name={this.props.name} component={this.renderList} fullWidth />
+          <div>{tagDropdownButton}</div>
+        </div>
+      );
+    } else {
+      tagList = (
+        <KeyValue label="">
+          <List
+            items={_.get(initialValues, ['tags', 'tagList'], [])}
+            itemFormatter={(item) => <li key={item}>{item}</li>}
+            isEmptyMessage=""
+          />
+        </KeyValue>
+      );
+    }
     return (
       <Accordion
         open={expanded}
@@ -135,8 +164,7 @@ class EditableTags extends React.Component {
         label={<Headline size="large" tag="h3">{this.props.heading}</Headline>}
         displayWhenClosed={<Badge>{size}</Badge>}
       >
-        <FieldArray name={this.props.name} component={this.renderList} fullWidth />
-        <div>{tagDropdownButton}</div>
+        { tagList }
       </Accordion>
     );
   }

@@ -2,11 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
-import { Pane, PaneMenu, Row, Col, Icon, IconButton, IfPermission, Layer, AccordionSet, Accordion, ExpandAllButton, KeyValue, List } from '@folio/stripes/components';
+import {
+  Pane,
+  PaneMenu,
+  Row,
+  Col,
+  Icon,
+  IconButton,
+  IfPermission,
+  Layer,
+  AccordionSet,
+  Accordion,
+  ExpandAllButton,
+  KeyValue,
+  List
+} from '@folio/stripes/components';
 import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
-import Notes from '../ViewSections/Notes';
+import EditTags from '../EditTags';
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -42,6 +56,7 @@ class ResourceView extends Component {
         notesSection: false
       }
     };
+    this.connectedEditTags = props.stripes.connect(EditTags);
   }
 
   getData = () => {
@@ -99,7 +114,13 @@ class ResourceView extends Component {
     );
 
     return (
-      <Pane defaultWidth={this.props.paneWidth} paneTitle={_.get(record, ['title'], '')} dismissible onClose={this.props.onClose} lastMenu={detailMenu}>
+      <Pane
+        defaultWidth={this.props.paneWidth}
+        paneTitle={_.get(record, ['title'], '')}
+        dismissible
+        onClose={this.props.onClose}
+        lastMenu={detailMenu}
+      >
         <TitleManager record={_.get(record, ['title'], '')} />
         <Row>
           <Col>
@@ -135,36 +156,38 @@ class ResourceView extends Component {
             <KeyValue label="Creator" value={_.get(record, ['creator'], '')} />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Notes
-              accordionId="notesSection"
-              record={record}
-              expanded={this.state.sections.notesSection}
-              onToggle={this.handleSectionToggle}
-            />
-          </Col>
-        </Row>
+        <this.connectedEditTags {...this.props} heading="Tags" initialValues={record} isEditing={false} />
         <Row>
           <Col>
             <KeyValue label="JHU Subjects">
-              <List items={_.get(record, ['tags', 'tagList'], [])} itemFormatter={(item) => <li key={item}>{item}</li>} isEmptyMessage="" />
+              <List
+                items={_.get(record, ['tags', 'tagList'], [])}
+                itemFormatter={(item) => <li key={item}>{item}</li>}
+                isEmptyMessage=""
+              />
             </KeyValue>
           </Col>
         </Row>
         <Row>
           <Col>
             <KeyValue label="FAST Terms">
-              <List items={_.get(record, ['terms'], [])} itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>} isEmptyMessage="" />
+              <List
+                items={_.get(record, ['terms'], [])}
+                itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>}
+                isEmptyMessage=""
+              />
             </KeyValue>
           </Col>
         </Row>
         <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
           <ResourceEditor
             stripes={this.props.stripes}
-            onSubmit={(item) => { this.update(item); }}
+            onSubmit={(item) => {
+              this.update(item);
+            }}
             onCancel={this.props.onCloseEdit}
             initialValues={record}
+            isEditing
             {...this.props}
           />
         </Layer>
