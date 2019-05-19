@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import Main from './components/Main';
-import ExamplePage from './components/ExamplePage';
 import Settings from './settings';
 
 /**
@@ -28,7 +27,6 @@ class Oriole extends React.Component {
     }
     return (
       <Switch>
-        <Route path={`${this.props.match.path}/examples`} exact component={ExamplePage} />
         <Route path={`${this.props.match.path}`} render={(props) => <this.connectedApp {...props} stripes={this.props.stripes} />} />;
         <Route component={() => { this.NoMatch(); }} />
       </Switch>
