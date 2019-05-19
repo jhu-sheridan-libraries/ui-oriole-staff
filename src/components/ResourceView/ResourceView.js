@@ -156,7 +156,12 @@ class ResourceView extends Component {
             <KeyValue label="Creator" value={_.get(record, ['creator'], '')} />
           </Col>
         </Row>
-        <this.connectedEditTags {...this.props} heading="Tags" initialValues={record} isEditing={false} />
+        <this.connectedEditTags
+          {...this.props}
+          heading="Tags"
+          tags={_.get(record, ['tags', 'tagList'], [])}
+          isEditing={false}
+        />
         <Row>
           <Col>
             <KeyValue label="FAST Terms">

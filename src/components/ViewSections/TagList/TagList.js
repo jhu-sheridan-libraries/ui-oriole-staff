@@ -28,7 +28,7 @@ class TagList extends React.Component {
 
   static propTypes = {
     heading: PropTypes.node.isRequired,
-    initialValues: PropTypes.object,
+    tags: PropTypes.object,
     availableTags: PropTypes.arrayOf(PropTypes.string),
     intl: intlShape,
     stripes: PropTypes.object.isRequired,
@@ -148,8 +148,8 @@ class TagList extends React.Component {
       </Dropdown>
     );
 
-    const { initialValues, expanded, accordionId, onToggle, isEditing } = this.props;
-    const size = initialValues.id ? initialValues.tags.tagList.length : 0;
+    const { tags, expanded, accordionId, onToggle, isEditing } = this.props;
+    const size = tags.length;
     let tagList;
     if (isEditing) {
       tagList = (
@@ -162,7 +162,7 @@ class TagList extends React.Component {
       tagList = (
         <KeyValue label="">
           <List
-            items={_.get(initialValues, ['tags', 'tagList'], [])}
+            items={tags}
             itemFormatter={(item) => <li key={item}>{item}</li>}
             isEmptyMessage=""
           />
