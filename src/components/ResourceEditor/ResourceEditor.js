@@ -33,7 +33,7 @@ class ResourceEditor extends Component {
 
   constructor(props) {
     super();
-    this.connectedEditTags = props.stripes.connect(TagList);
+    this.connectedTagList = props.stripes.connect(TagList);
   }
 
   getLastMenu = (id, label) => {
@@ -101,7 +101,11 @@ class ResourceEditor extends Component {
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
-                <this.connectedEditTags {...this.props} heading="Tags" />
+                <this.connectedTagList
+                  {...this.props}
+                  tags={_.get(initialValues, ['tags', 'tagList'], [])}
+                  isEditing
+                />
               </Col>
             </Row>
             {/* <IfPermission perm="oriole.resources.item.delete"> */}

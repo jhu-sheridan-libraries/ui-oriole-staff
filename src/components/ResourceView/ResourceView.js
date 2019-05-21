@@ -57,7 +57,7 @@ class ResourceView extends Component {
         notesSection: false
       }
     };
-    this.connectedEditTags = props.stripes.connect(TagList);
+    this.connectedTagList = props.stripes.connect(TagList);
   }
 
   getData = () => {
@@ -162,7 +162,7 @@ class ResourceView extends Component {
             <KeyValue label="Note" value={_.get(record, 'note', '')} />
           </Col>
         </Row>
-        <this.connectedEditTags
+        <this.connectedTagList
           {...this.props}
           tags={_.get(record, ['tags', 'tagList'], [])}
           isEditing={false}
