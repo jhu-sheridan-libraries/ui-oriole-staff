@@ -168,17 +168,6 @@ class ResourceView extends Component {
           isEditing={false}
         />
         <AccessRestrictions accordionId="Access Restrictions" accessRestrictions={_.get(record, 'accessRestrictions', [])} />
-        <Row>
-          <Col>
-            <KeyValue label="FAST Terms">
-              <List
-                items={_.get(record, ['terms'], [])}
-                itemFormatter={(item) => <li key={item.subject.id}>{item.subject.term}</li>}
-                isEmptyMessage=""
-              />
-            </KeyValue>
-          </Col>
-        </Row>
         <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
           <ResourceEditor
             stripes={this.props.stripes}
