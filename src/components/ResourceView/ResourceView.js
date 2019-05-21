@@ -139,22 +139,27 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="JHU ID" value={_.get(record, ['altId'])} />
+            <KeyValue label="JHU ID" value={_.get(record, 'altId')} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Description" value={_.get(record, ['description'], '')} />
+            <KeyValue label="Description" value={_.get(record, 'description', '')} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Publisher" value={_.get(record, ['publisher'], '')} />
+            <KeyValue label="Publisher" value={_.get(record, 'publisher', '')} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Creator" value={_.get(record, ['creator'], '')} />
+            <KeyValue label="Creator" value={_.get(record, 'creator', '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="Note" value={_.get(record, 'note', '')} />
           </Col>
         </Row>
         <this.connectedEditTags
