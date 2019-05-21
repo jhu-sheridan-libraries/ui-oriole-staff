@@ -164,7 +164,6 @@ class ResourceView extends Component {
         </Row>
         <this.connectedEditTags
           {...this.props}
-          heading="Tags"
           tags={_.get(record, ['tags', 'tagList'], [])}
           isEditing={false}
         />

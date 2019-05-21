@@ -1,6 +1,7 @@
 {
   "title": "Databases",
   "resultCount": "{count, number} {count, plural, one {Record found} other {Records found}}",
+  "notFound": "No {name} found",
 
   "general": "General",
   "categories": "Categories",
@@ -22,6 +23,8 @@
   "tags.empty": "No tags",
   "tags.addTag": "Add a tag",
   "tags.heading": "Tags",
+
+  "accessRestrictions.heading": "Access Restrictions",
 
   "databases.columns.title": "Title",
   "databases.columns.publisher": "Publisher",

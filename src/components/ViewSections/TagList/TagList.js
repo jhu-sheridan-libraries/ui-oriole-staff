@@ -26,10 +26,9 @@ class TagList extends React.Component {
   });
 
   static propTypes = {
-    heading: PropTypes.node.isRequired,
     tags: PropTypes.object,
     availableTags: PropTypes.arrayOf(PropTypes.string),
-    intl: intlShape,
+    intl: intlShape.isRequired,
     stripes: PropTypes.object.isRequired,
     accordionId: PropTypes.string,
     expanded: PropTypes.bool,
@@ -126,6 +125,7 @@ class TagList extends React.Component {
         onClickItem={this.addTagHandler}
       />
     );
+    const heading = this.props.intl.formatMessage({ id: 'ui-oriole.tags.heading' });
 
     const tagDropdownButton = (
       <Dropdown
@@ -163,7 +163,7 @@ class TagList extends React.Component {
           <List
             items={tags}
             itemFormatter={(item) => <li key={item}>{item}</li>}
-            isEmptyMessage=""
+            isEmptyMessage={<FormattedMessage id="ui-oriole.notFound" values={{ name: heading }} />}
           />
         </KeyValue>
       );
@@ -173,7 +173,7 @@ class TagList extends React.Component {
         open={expanded}
         id={accordionId}
         onToggle={onToggle}
-        label={<Headline size="large" tag="h3">{this.props.heading}</Headline>}
+        label={<Headline size="large" tag="h3">{ heading }</Headline>}
         displayWhenClosed={<Badge>{size}</Badge>}
       >
         { tagList }

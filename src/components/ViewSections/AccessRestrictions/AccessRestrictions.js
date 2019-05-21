@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import {
   Row,
   Col,
@@ -9,6 +10,7 @@ import {
   Badge
 } from '@folio/stripes/components';
 import AccessRestriction from './AccessRestriction';
+import css from './AccessRestrictions.css';
 
 const AccessRestrictions = ({
   expanded,
@@ -21,15 +23,17 @@ const AccessRestrictions = ({
       <AccessRestriction item={item} />
     );
   });
+  const heading = <FormattedMessage id="ui-oriole.accessRestrictions.heading" />;
+  const notFoundMsg = <FormattedMessage id="ui-oriole.notFound" values={{ name: heading }} />;
   return (
     <Accordion
       open={expanded}
       id={accordionId}
       onToggle={onToggle}
-      label={<Headline size="large" tag="h3">Access Restrictions</Headline>}
+      label={<Headline size="large" tag="h3">{heading}</Headline>}
       displayWhenClosed={<Badge>{accessRestrictions.length}</Badge>}
     >
-      { blocks }
+      { blocks.length > 0 ? blocks : <p className={css.isEmptyMessage}>{notFoundMsg}</p> }
     </Accordion>
   );
 };
