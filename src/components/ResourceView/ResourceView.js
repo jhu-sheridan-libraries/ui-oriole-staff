@@ -21,6 +21,7 @@ import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
 import TagList from '../ViewSections/TagList';
+import AccessRestrictions from "../ViewSections/AccessRestrictions";
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -162,6 +163,7 @@ class ResourceView extends Component {
           tags={_.get(record, ['tags', 'tagList'], [])}
           isEditing={false}
         />
+        <AccessRestrictions accordionId="Access Restrictions" accessRestrictions={_.get(record, 'accessRestrictions', [])} />
         <Row>
           <Col>
             <KeyValue label="FAST Terms">
