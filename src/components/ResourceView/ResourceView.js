@@ -20,8 +20,8 @@ import {
 import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
-import TagList from '../ViewSections/TagList';
-import AccessRestrictions from "../ViewSections/AccessRestrictions";
+import TagList from '../Sections/TagList';
+import AccessRestrictions from "../Sections/AccessRestrictions";
 
 class ResourceView extends Component {
   static manifest = Object.freeze({

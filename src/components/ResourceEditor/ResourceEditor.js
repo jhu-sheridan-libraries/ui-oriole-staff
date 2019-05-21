@@ -4,7 +4,7 @@ import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextF
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
-import TagList from '../ViewSections/TagList';
+import TagList from '../Sections/TagList';
 import { getItemById, getIdentifier } from '../../selectors/resource';
 
 function validate(values, props) {
