@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
