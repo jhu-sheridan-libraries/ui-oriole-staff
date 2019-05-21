@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import { SearchAndSort } from '@folio/stripes/smart-components';
 import transitionToParams from '@folio/stripes-components/util/transitionToParams';
 import removeQueryParam from '@folio/stripes-components/util/removeQueryParam';
@@ -30,7 +31,7 @@ class Main extends Component {
       initialValue: {
         query: '',
         filters: '',
-        sort: 'title'
+        sort: '-metadata.updatedDate'
       },
     },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
@@ -143,9 +144,14 @@ class Main extends Component {
   render() {
     const { stripes, mutator, resources } = this.props;
     const resultsFormatter = {
-      'Title': data => _.get(data, ['title'], ''),
-      'URL': data => _.toString(_.get(data, ['url'], '')),
-      'Publisher': data => _.toString(_.get(data, ['publisher'], '')),
+      'title': data => _.get(data, 'title', ''),
+      'metadata': data => _.get(data, ['metadata', 'updatedDate'], '').substring(0, 10),
+      'publisher': data => _.get(data, 'publisher', ''),
+    };
+    const columnMapping = {
+      'title': <FormattedMessage id="ui-oriole.databases.columns.title" />,
+      'metadata': <FormattedMessage id="ui-oriole.databases.columns.metadata" />,
+      'publisher': <FormattedMessage id="ui-oriole.databases.columns.publisher" />,
     };
 
     return (
@@ -157,8 +163,9 @@ class Main extends Component {
           objectName="databases"
           baseRoute={packageInfo.stripes.route}
           filterConfig={filterConfig}
-          visibleColumns={['title', 'url', 'publisher']}
+          visibleColumns={['title', 'publisher', 'metadata']}
           resultsFormatter={resultsFormatter}
+          columnMapping={columnMapping}
           viewRecordComponent={ResourceView}
           // onSelectRow={onSelectRow}
           onCreate={this.create}
