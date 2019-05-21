@@ -21,5 +21,9 @@
   "tags.removeTag": "Remove",
   "tags.empty": "No tags",
   "tags.addTag": "Add a tag",
-  "tags.heading": "Tags"
+  "tags.heading": "Tags",
+
+  "databases.columns.title": "Title",
+  "databases.columns.publisher": "Publisher",
+  "databases.columns.metadata": "Last Updated"
 }
