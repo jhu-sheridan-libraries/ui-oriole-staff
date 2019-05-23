@@ -21,7 +21,7 @@ import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
 import TagList from '../Sections/TagList';
-import AccessRestrictions from "../Sections/AccessRestrictions";
+import AccessRestrictions from '../Sections/AccessRestrictions';
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -144,7 +144,9 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Description" value={_.get(record, 'description', '')} />
+            <KeyValue label="Description">
+              <div dangerouslySetInnerHTML={{ __html: _.get(record, 'description', '') }} />
+            </KeyValue>
           </Col>
         </Row>
         <Row>
