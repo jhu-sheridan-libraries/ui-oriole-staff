@@ -31,7 +31,7 @@ class Main extends Component {
       initialValue: {
         query: '',
         filters: '',
-        sort: '-metadata.updatedDate'
+        sort: ''
       },
     },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
@@ -54,8 +54,8 @@ class Main extends Component {
             */
             const resourceData = args[2];
             const sortMap = {
-              Name: 'title',
-              Code: 'code',
+              'createdDate': 'metadata.createdDate',
+              'updatedDate': 'metadata.updatedDate'
             };
 
             const index = resourceData.query.qindex ? resourceData.query.qindex : 'all';
@@ -110,7 +110,7 @@ class Main extends Component {
     mutator: PropTypes.object.isRequired,
     // onSelectRow: PropTypes.func,
     resources: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -124,7 +124,7 @@ class Main extends Component {
     packageInfo.stripes.route = path;
     packageInfo.stripes.home = path;
     return packageInfo;
-  }
+  };
 
   create = (databaseData) => {
     const { mutator } = this.props;
@@ -134,23 +134,25 @@ class Main extends Component {
         layer: null
       });
     });
-  }
+  };
 
   onChangeIndex = (e) => {
     const qindex = e.target.value;
     this.props.mutator.query.update({ qindex });
-  }
+  };
 
   render() {
     const { stripes, mutator, resources } = this.props;
     const resultsFormatter = {
       'title': data => _.get(data, 'title', ''),
-      'metadata': data => _.get(data, ['metadata', 'updatedDate'], '').substring(0, 10),
+      'createdDate': data => _.get(data, ['metadata', 'createdDate'], '').substring(0, 10),
+      'updatedDate': data => _.get(data, ['metadata', 'updatedDate'], '').substring(0, 10),
       'publisher': data => _.get(data, 'publisher', ''),
     };
     const columnMapping = {
       'title': <FormattedMessage id="ui-oriole.databases.columns.title" />,
-      'metadata': <FormattedMessage id="ui-oriole.databases.columns.metadata" />,
+      'createdDate': <FormattedMessage id="ui-oriole.databases.columns.createdDate" />,
+      'updatedDate': <FormattedMessage id="ui-oriole.databases.columns.updatedDate" />,
       'publisher': <FormattedMessage id="ui-oriole.databases.columns.publisher" />,
     };
 
@@ -163,7 +165,7 @@ class Main extends Component {
           objectName="databases"
           baseRoute={packageInfo.stripes.route}
           filterConfig={filterConfig}
-          visibleColumns={['title', 'publisher', 'metadata']}
+          visibleColumns={['title', 'publisher', 'createdDate', 'updatedDate']}
           resultsFormatter={resultsFormatter}
           columnMapping={columnMapping}
           viewRecordComponent={ResourceView}
