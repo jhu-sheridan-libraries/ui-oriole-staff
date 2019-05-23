@@ -61,7 +61,8 @@ class Main extends Component {
             const index = resourceData.query.qindex ? resourceData.query.qindex : 'all';
             const searchableIndex = searchableIndexes.find(idx => idx.value === index);
 
-            let cql = searchableIndex.makeQuery(resourceData.query.query);
+            const queryQuery = resourceData.query.query ? resourceData.query.query : '';
+            let cql = searchableIndex.makeQuery(queryQuery);
             const filterCql = filters2cql(filterConfig, resourceData.query.filters);
             if (filterCql) {
               if (cql) {
