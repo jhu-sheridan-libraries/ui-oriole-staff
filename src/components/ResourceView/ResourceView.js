@@ -139,6 +139,13 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
+            <KeyValue label="Proxy?">
+              {_.get(record, 'proxy', true) ? 'Yes' : 'No'}
+            </KeyValue>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <KeyValue label="JHU ID" value={_.get(record, 'altId')} />
           </Col>
         </Row>
