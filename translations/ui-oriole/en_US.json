@@ -28,5 +28,6 @@
 
   "databases.columns.title": "Title",
   "databases.columns.publisher": "Publisher",
-  "databases.columns.metadata": "Last Updated"
+  "databases.columns.updatedDate": "Last Updated",
+  "databases.columns.createdDate": "Created"
 }
