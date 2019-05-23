@@ -98,7 +98,7 @@ class ResourceEditor extends Component {
                   typeof id !== 'undefined' &&
                   <KeyValue label="JHU ID" value={_.get(initialValues, ['altId'])} />
                 }
-                <Field label="Description" name="description" id="description" component={TextArea} fullWidth />
+                <Field label="Description" name="description" id="description" component={TextArea} fullWidth style={{ height: 120 }}/>
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
                 <this.connectedTagList
