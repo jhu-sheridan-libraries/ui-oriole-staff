@@ -7,18 +7,46 @@ for more information.
 
 ## Introduction
 
-Congratulations on creating a new Stripes UI app module!  Follow the instructions below to run ui-oriole and 
-start your development.
+This module was created with stripes. For documentation of stripes, see [stripes documentation](https://github.com/folio-org/stripes). 
 
 ## Prerequisites
 
 In order to view and log into the platform being served up, a suitable Okapi backend will need to be running. 
-The [Folio testing-backend](https://app.vagrantup.com/folio/boxes/testing-backend) Vagrant box should work if 
-your app does not yet have its own backend module.
+For oriole backend, see these projects: 
+* [mod-oriole](https://github.com/jhu-sheridan-libraries/mod-oriole) - The Oriole API
+* [oriole-ansible](https://github.com/jhu-sheridan-libraries/oriole-ansible) - Deployment scripts using ansible
 
 ## Run your new app
 
-Run the following from the ui-oriole directory to serve your new app using a development server:
+We use [yarn](https://yarnpkg.com) to manage the packages and run the app. You may also directly use stripes commands.
+
+Before you start, create two files `.stripesclirc` and `stripes.config.js` 
+See [.stripesclirc.example](https://github.com/folio-org/stripes-sample-platform/blob/master/.stripesclirc.example) and 
+[stripes.config.js](https://github.com/folio-org/stripes-sample-platform/blob/master/stripes.config.js) in the 
+[stripes-sample-platform](https://github.com/folio-org/stripes-sample-platform) repository for how the file show look like. 
+
+### With yarn commands
+
+Run the following from the ui-oriole-staff directory to serve your new app using a development server:
+```
+yarn start
+```
+
+#### Run the tests
+
+Run the included UI test `demo` with the following command:
+```
+yarn test
+```
+
+#### Build the package
+```
+yarn build
+```
+
+### With stripes commands
+
+Run the following from the ui-oriole-staff directory to serve your new app using a development server:
 ```
 stripes serve
 ```
@@ -35,35 +63,11 @@ and `--tenant` options.
 stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
 ```
 
-## Run the tests
+#### Run the tests
 
 Run the included UI test `demo` with the following command:
 ```
 stripes test --run demo --show
-```
-
-## Set up Visual Studio Code debugger
-
-Create a directory `.vscode`, and a file `.vscode/launch.json`, put the following in the file: 
-```json
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://localhost:3001",
-      "webRoot": "${workspaceFolder}",
-      "sourceMaps": true,
-      "trace": true
-    }
-  ]
-}
 ```
 
 ## What to do next?
