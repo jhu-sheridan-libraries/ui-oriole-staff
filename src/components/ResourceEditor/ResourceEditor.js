@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Pane, PaneMenu, IconButton, IfPermission, Button, Row, Col, List, TextField, TextArea, Accordion, Headline, Badge, KeyValue, Checkbox } from '@folio/stripes/components';
+import {
+  Pane,
+  PaneMenu,
+  IconButton,
+  IfPermission,
+  Button,
+  Row,
+  Col,
+  List,
+  TextField,
+  TextArea,
+  Accordion,
+  Headline,
+  Badge,
+  KeyValue,
+  Checkbox,
+  RadioButton,
+  RadioButtonGroup
+} from '@folio/stripes/components';
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
 import TagList from '../Sections/TagList';
-import { getItemById, getIdentifier } from '../../selectors/resource';
+import { getItemById } from '../../selectors/resource';
 
 function validate(values, props) {
   const errors = {};
@@ -98,7 +116,13 @@ class ResourceEditor extends Component {
                   typeof id !== 'undefined' &&
                   <KeyValue label="JHU ID" value={_.get(initialValues, ['altId'])} />
                 }
-                <Field label="Description" name="description" id="description" component={TextArea} fullWidth style={{ height: 120 }}/>
+                <KeyValue label="Proxy?">
+                  <Field name="proxy" id="proxy" component={RadioButtonGroup}>
+                    <RadioButton label="Yes" value="true" inline />
+                    <RadioButton label="No" value="false" inline />
+                  </Field>
+                </KeyValue>
+                <Field label="Description" name="description" id="description" component={TextArea} fullWidth style={{ height: 120 }} />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
                 <Field label="Note" name="note" id="note" component={TextArea} fullWidth style={{ height: 120 }} />
