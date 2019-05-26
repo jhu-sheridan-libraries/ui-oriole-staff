@@ -47,7 +47,7 @@ class ResourceEditor extends Component {
     expanded: PropTypes.bool,
     accordionId: PropTypes.string,
     onToggle: PropTypes.func,
-  }
+  };
 
   constructor(props) {
     super();
@@ -71,7 +71,7 @@ class ResourceEditor extends Component {
         </Button>
       </PaneMenu>
     );
-  }
+  };
 
   deleteResource = (id) => {
     const { parentMutator } = this.props;
@@ -81,7 +81,7 @@ class ResourceEditor extends Component {
         layer: null
       });
     });
-  }
+  };
 
   render() {
     const { parentResources, expanded, accordionId, onToggle, match: { params: { id } } } = this.props;
