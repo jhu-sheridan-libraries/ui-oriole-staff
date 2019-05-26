@@ -152,7 +152,7 @@ class ResourceView extends Component {
         <Row>
           <Col>
             <KeyValue label="Description">
-              <div dangerouslySetInnerHTML={{ __html: _.get(record, 'description', '') }} />
+              <div dangerouslySetInnerHTML={{ __html: _.get(record, 'description', '').replace(/\r?\n/g, '<br/>') }} />
             </KeyValue>
           </Col>
         </Row>
@@ -168,7 +168,9 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Note" value={_.get(record, 'note', '')} />
+            <KeyValue label="Note">
+              <div dangerouslySetInnerHTML={{ __html: _.get(record, 'note', '').replace(/\r?\n/g, '<br/>') }} />
+            </KeyValue>
           </Col>
         </Row>
         <this.connectedTagList
