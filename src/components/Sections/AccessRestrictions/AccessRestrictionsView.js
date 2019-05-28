@@ -25,7 +25,7 @@ const AccessRestrictionsView = ({
             <Col>
               <KeyValue
                 label="Private?"
-                value={_.get(item, 'private', 'false') === 'true' ? 'Yes' : 'No'}
+                value={_.get(item, 'private', false) ? 'Yes' : 'No'}
               />
             </Col>
           </Row>
