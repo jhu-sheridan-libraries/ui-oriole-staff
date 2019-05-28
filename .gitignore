@@ -63,5 +63,6 @@ stripes.config.js.local
 
 # IDE
 .vscode
+.idea
 
 output
