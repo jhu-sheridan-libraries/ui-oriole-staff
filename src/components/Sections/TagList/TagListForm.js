@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
@@ -7,16 +7,12 @@ import {
   Button,
   Dropdown,
   DropdownMenu,
-  Accordion,
-  Badge,
   List,
-  Headline,
-  KeyValue,
 } from '@folio/stripes/components';
 import css from './TagList.css';
 import SearchableList from '../../SearchableList';
 
-class TagList extends React.Component {
+class TagListForm extends React.Component {
   static manifest = Object.freeze({
     availableTags: {
       type: 'okapi',
@@ -26,24 +22,13 @@ class TagList extends React.Component {
   });
 
   static propTypes = {
-    tags: PropTypes.object,
     availableTags: PropTypes.arrayOf(PropTypes.string),
-    intl: intlShape.isRequired,
-    stripes: PropTypes.object.isRequired,
-    accordionId: PropTypes.string,
-    expanded: PropTypes.bool,
-    onToggle: PropTypes.func,
-    name: PropTypes.string,
-    isEditing: PropTypes.bool,
+    name: PropTypes.string.isRequired,
     resources: PropTypes.shape({
       availableTags: PropTypes.shape({
         records: PropTypes.arrayOf(PropTypes.string),
       }),
     }).isRequired,
-  };
-
-  static defaultProps = {
-    name: 'tags.tagList',
   };
 
   constructor(props) {
@@ -125,8 +110,6 @@ class TagList extends React.Component {
         onClickItem={this.addTagHandler}
       />
     );
-    const heading = this.props.intl.formatMessage({ id: 'ui-oriole.tags.heading' });
-
     const tagDropdownButton = (
       <Dropdown
         id="section-add-tag"
@@ -135,11 +118,11 @@ class TagList extends React.Component {
         onToggle={this.onToggleAddTagDD}
       >
         <Button align="end" bottomMargin0 data-role="toggle" aria-haspopup="true" id="clickable-add-tag">
-          <FormattedMessage id="ui-oriole.tags.addTag" />
+          <FormattedMessage id="ui-oriole.tags.add" />
         </Button>
         <DropdownMenu
           data-role="menu"
-          width="40em"
+          width="50em"
           onToggle={this.onToggleAddTagDD}
         >
           {tagsDD}
@@ -147,39 +130,13 @@ class TagList extends React.Component {
       </Dropdown>
     );
 
-    const { tags, expanded, accordionId, onToggle, isEditing } = this.props;
-    const size = tags.length;
-    let tagList;
-    if (isEditing) {
-      tagList = (
-        <div>
-          <FieldArray name={this.props.name} component={this.renderList} fullWidth />
-          <div>{tagDropdownButton}</div>
-        </div>
-      );
-    } else {
-      tagList = (
-        <KeyValue label="">
-          <List
-            items={tags}
-            itemFormatter={(item) => <li key={item}>{item}</li>}
-            isEmptyMessage={<FormattedMessage id="ui-oriole.notFound" values={{ name: heading }} />}
-          />
-        </KeyValue>
-      );
-    }
     return (
-      <Accordion
-        open={expanded}
-        id={accordionId}
-        onToggle={onToggle}
-        label={<Headline size="large" tag="h3">{ heading }</Headline>}
-        displayWhenClosed={<Badge>{size}</Badge>}
-      >
-        { tagList }
-      </Accordion>
+      <Fragment>
+        <FieldArray name={this.props.name} component={this.renderList} fullWidth />
+        <div>{tagDropdownButton}</div>
+      </Fragment>
     );
   }
 }
 
-export default injectIntl(TagList);
+export default TagListForm;
