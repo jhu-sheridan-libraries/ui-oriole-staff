@@ -122,17 +122,22 @@ class ResourceView extends Component {
         onClose={this.props.onClose}
         lastMenu={detailMenu}
       >
-        <TitleManager record={_.get(record, ['title'], '')} />
+        <TitleManager record={_.get(record, 'title', '')} />
         <Row>
           <Col>
-            <KeyValue label="Title" value={_.get(record, ['title'], '')} />
+            <KeyValue label="Title" value={_.get(record, 'title', '')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <KeyValue label="Alternative Titles" value={_.get(record, 'altTitle', '')} />
           </Col>
         </Row>
         <Row>
           <Col>
             <KeyValue label="URL">
-              <a href={_.toString(_.get(record, ['url'], ''))} target="_new">
-                {_.toString(_.get(record, ['url'], ''))}
+              <a href={_.toString(_.get(record, 'url', ''))} target="_new">
+                {_.toString(_.get(record, 'url', ''))}
               </a>
             </KeyValue>
           </Col>

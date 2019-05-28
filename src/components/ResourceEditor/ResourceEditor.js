@@ -131,6 +131,7 @@ class ResourceEditor extends Component {
             <Row>
               <Col xs={8}>
                 <Field label="Title" name="title" id="title" component={TextField} fullWidth />
+                <Field label="Alternative Titles" name="altTitle" id="altTitle" component={TextField} fullWidth />
                 <Field label="URL" name="url" id="url" component={TextField} fullWidth />
                 {
                   typeof id !== 'undefined' &&
