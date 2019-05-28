@@ -9,15 +9,12 @@ import {
   Button,
   Row,
   Col,
-  List,
   TextField,
   TextArea,
   Accordion,
   AccordionSet,
-  Headline,
   Badge,
   KeyValue,
-  Checkbox,
   RadioButton,
   RadioButtonGroup
 } from '@folio/stripes/components';
@@ -113,11 +110,11 @@ class ResourceEditor extends Component {
     let paneTitle;
     let showDeleteButton;
     if (typeof id === 'undefined') {
-      lastMenu = this.getLastMenu('clickable-createnewuser', 'Create');
-      paneTitle = 'Create Resource';
+      lastMenu = this.getLastMenu('clickable-createnewdatabase', 'Create');
+      paneTitle = 'Create Database';
       showDeleteButton = false;
     } else {
-      lastMenu = this.getLastMenu('clickable-updateuser', 'Update');
+      lastMenu = this.getLastMenu('clickable-updatedatabase', 'Update');
       paneTitle = <span>Edit: {_.get(initialValues, ['title'], '')} </span>;
       showDeleteButton = true;
     }
