@@ -23,22 +23,11 @@ class OrioleSettings extends React.Component {
             label: formatMessage({ id: 'ui-oriole.settings.general' }),
             component: GeneralSettings,
           },
-        ]
-      },
-      {
-        label: formatMessage({ id: 'ui-oriole.categories' }),
-        pages: [
-          {
-            route: 'subjects',
-            label: formatMessage({ id: 'ui-oriole.subjects' }),
-            component: SubjectsSettings,
-            perm: 'oriole.subjects.admin'
-          },
           {
             route: 'libraries',
             label: formatMessage({ id: 'ui-oriole.libraries' }),
             component: LibrariesSettings,
-            perm: 'oriole.subjects.admin'
+            perm: 'oriole.libraries.admin'
           }
         ]
       }

@@ -23,11 +23,12 @@ class LibrariesSettings extends React.Component {
         baseUrl="oriole-libraries"
         records="libraries"
         label={<FormattedMessage id="ui-oriole.libraries" />}
-        labelSingular={<FormattedMessage id="ui-oriole.library" />}
+        labelSingular={<FormattedMessage id="ui-oriole.libraries" />}
         objectLabel={<FormattedMessage id="ui-oriole.libraries" />}
         hiddenFields={['description', 'numberOfObjects']}
-        nameKey="library"
-        id="libraries-settings"
+        nameKey="name"
+        id="library-settings"
+        sortby="name"
       />
     );
   }
