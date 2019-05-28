@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { Field, FieldArray } from 'redux-form';
+import { FormattedMessage } from 'react-intl';
 import {
   Row,
   Col,
@@ -24,12 +25,17 @@ class AccessRestrictionsForm extends Component {
       <Fragment>
         <Row>
           <Col xs={12}>
+            {fields.length === 0 &&
+            <Col xs={6}>
+              <FormattedMessage id="ui-oriole.accessRestrictions.empty" />
+            </Col>
+            }
             {fields.map(this.renderSubForm)}
           </Col>
         </Row>
         <Row>
           <Col xs={12} style={{ paddingTop: '10px' }}>
-            <Button onClick={() => fields.push({})}>+ Add</Button>
+            <Button onClick={() => fields.push({})}><FormattedMessage id="ui-oriole.accessRestrictions.add" /></Button>
           </Col>
         </Row>
       </Fragment>

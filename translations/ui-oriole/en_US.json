@@ -27,6 +27,7 @@
 
   "accessRestrictions.add": "Add access restriction",
   "accessRestrictions.remove": "Remove access restriction",
+  "accessRestrictions.empty": "No access restrictions",
 
   "accessRestrictions.heading": "Access Restrictions",
 
