@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import {
   Pane,
   PaneMenu,
@@ -12,6 +13,7 @@ import {
   TextField,
   TextArea,
   Accordion,
+  AccordionSet,
   Headline,
   Badge,
   KeyValue,
@@ -19,11 +21,14 @@ import {
   RadioButton,
   RadioButtonGroup
 } from '@folio/stripes/components';
+// eslint-disable-next-line no-unused-vars
 import { Field } from 'redux-form';
 import _ from 'lodash';
 import stripesForm from '@folio/stripes/form';
-import TagList from '../Sections/TagList';
+import { TagListForm } from '../Sections/TagList';
+import { AccessRestrictionsForm } from '../Sections/AccessRestrictions';
 import { getItemById } from '../../selectors/resource';
+
 
 function validate(values, props) {
   const errors = {};
@@ -51,7 +56,20 @@ class ResourceEditor extends Component {
 
   constructor(props) {
     super();
-    this.connectedTagList = props.stripes.connect(TagList);
+    this.state = {
+      sections: {
+        notesSection: false
+      }
+    };
+    this.connectedTagListForm = props.stripes.connect(TagListForm);
+  }
+
+  handleSectionToggle = ({ id }) => {
+    this.setState(curState => {
+      const newState = _.cloneDeep(curState);
+      newState.sections[id] = !newState.sections[id];
+      return newState;
+    });
   }
 
   getLastMenu = (id, label) => {
@@ -103,6 +121,8 @@ class ResourceEditor extends Component {
       paneTitle = <span>Edit: {_.get(initialValues, ['title'], '')} </span>;
       showDeleteButton = true;
     }
+    const accessRestrictions = _.get(initialValues, 'accessRestrictions', []);
+    const tags = _.get(initialValues, ['tags', 'tagList'], []);
 
     return (
       <form id="form-resource">
@@ -126,11 +146,22 @@ class ResourceEditor extends Component {
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
                 <Field label="Note" name="note" id="note" component={TextArea} fullWidth style={{ height: 120 }} />
-                <this.connectedTagList
-                  {...this.props}
-                  tags={_.get(initialValues, ['tags', 'tagList'], [])}
-                  isEditing
-                />
+                <AccordionSet accordionStatus={this.state.sections} onToggle={this.handleSectionToggle}>
+                  <Accordion
+                    label={<FormattedMessage id="ui-oriole.tags.heading" />}
+                    id="tagsSection"
+                    displayWhenClosed={<Badge>{tags.length}</Badge>}
+                  >
+                    <TagListForm {...this.props} name="tags.tagList" />
+                  </Accordion>
+                  <Accordion
+                    id="accessRestrictionsSection"
+                    label={<FormattedMessage id="ui-oriole.accessRestrictions.heading" />}
+                    displayWhenClosed={<Badge>{accessRestrictions.length}</Badge>}
+                  >
+                    <AccessRestrictionsForm {...this.props} />
+                  </Accordion>
+                </AccordionSet>
               </Col>
             </Row>
             {/* <IfPermission perm="oriole.resources.item.delete"> */}

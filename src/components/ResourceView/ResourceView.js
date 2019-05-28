@@ -2,26 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {
   Pane,
   PaneMenu,
   Row,
   Col,
-  Icon,
   IconButton,
-  IfPermission,
   Layer,
   AccordionSet,
   Accordion,
-  ExpandAllButton,
   KeyValue,
-  List
+  Badge,
 } from '@folio/stripes/components';
 import { TitleManager } from '@folio/stripes/core';
 import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
-import TagList from '../Sections/TagList';
-import AccessRestrictions from '../Sections/AccessRestrictions';
+import { TagListView } from '../Sections/TagList';
+import { AccessRestrictionsView } from '../Sections/AccessRestrictions';
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -48,7 +46,8 @@ class ResourceView extends Component {
     parentMutator: PropTypes.object.isRequired,
     editLink: PropTypes.string,
     mutator: PropTypes.object,
-  }
+    intl: intlShape.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -57,7 +56,6 @@ class ResourceView extends Component {
         notesSection: false
       }
     };
-    this.connectedTagList = props.stripes.connect(TagList);
   }
 
   getData = () => {
@@ -66,7 +64,7 @@ class ResourceView extends Component {
     if (!records || records.length === 0 || !id) return null;
     const data = records.find(u => u.id === id);
     return data;
-  }
+  };
 
   update = (resource) => {
     delete resource.resources;
@@ -76,11 +74,11 @@ class ResourceView extends Component {
       });
       this.props.onCloseEdit();
     });
-  }
+  };
 
   onRemove = (item) => {
     console.log('remove', item);
-  }
+  };
 
   handleSectionToggle = ({ id }) => {
     this.setState(curState => {
@@ -88,7 +86,7 @@ class ResourceView extends Component {
       newState.sections[id] = !newState.sections[id];
       return newState;
     });
-  }
+  };
 
   render() {
     const { stripes, parentResources, location, match: { params: { id } } } = this.props;
@@ -113,6 +111,8 @@ class ResourceView extends Component {
         />
       </PaneMenu>
     );
+    const accessRestrictions = _.get(record, 'accessRestrictions', []);
+    const tags = _.get(record, ['tags', 'tagList'], []);
 
     return (
       <Pane
@@ -173,12 +173,22 @@ class ResourceView extends Component {
             </KeyValue>
           </Col>
         </Row>
-        <this.connectedTagList
-          {...this.props}
-          tags={_.get(record, ['tags', 'tagList'], [])}
-          isEditing={false}
-        />
-        <AccessRestrictions accordionId="Access Restrictions" accessRestrictions={_.get(record, 'accessRestrictions', [])} />
+        <AccordionSet accordionStatus={this.state.sections} onToggle={this.onToggleSection}>
+          <Accordion
+            label={<FormattedMessage id="ui-oriole.tags.heading" />}
+            id="tagsSection"
+            displayWhenClosed={<Badge>{tags.length}</Badge>}
+          >
+            <TagListView tags={tags} />
+          </Accordion>
+          <Accordion
+            id="accessRestrictionsSection"
+            label={<FormattedMessage id="ui-oriole.accessRestrictions.heading" />}
+            displayWhenClosed={<Badge>{accessRestrictions.length}</Badge>}
+          >
+            <AccessRestrictionsView accessRestrictions={accessRestrictions} />
+          </Accordion>
+        </AccordionSet>
         <Layer isOpen={query.layer ? query.layer === 'edit' : false} contentLabel="Edit">
           <ResourceEditor
             stripes={this.props.stripes}
@@ -196,4 +206,4 @@ class ResourceView extends Component {
   }
 }
 
-export default ResourceView;
+export default injectIntl(ResourceView);

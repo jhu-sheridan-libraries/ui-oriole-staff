@@ -19,10 +19,14 @@
   "settings.some-feature": "Some Feature",
   "settings.some-feature.message": "These are your settings for some app feature.",
 
-  "tags.removeTag": "Remove",
+  "tags.remove": "Remove",
   "tags.empty": "No tags",
-  "tags.addTag": "Add a tag",
+  "tags.add": "Add tag",
   "tags.heading": "Tags",
+  "tags.notFound": "No tags found",
+
+  "accessRestrictions.add": "Add access restriction",
+  "accessRestrictions.remove": "Remove access restriction",
 
   "accessRestrictions.heading": "Access Restrictions",
 

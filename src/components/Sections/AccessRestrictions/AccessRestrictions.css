@@ -6,9 +6,29 @@
 }
 
 .list {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .isEmptyMessage {
     color: var(--color-text-p2);
+}
+
+.item {
+    border-color: #999;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+&:last-of-type {
+     border-bottom: 1px solid #999;
+     margin-bottom: 4px;
+ }
+}
+
+.content {
+    padding: 5px 15px;
+    background-color: #F7F7F7;
+    width: 100%;
+}
+
+.creationLabel {
+    margin-left: 10px;
 }
