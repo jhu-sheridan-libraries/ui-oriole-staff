@@ -152,7 +152,7 @@ class ResourceEditor extends Component {
                     id="tagsSection"
                     displayWhenClosed={<Badge>{tags.length}</Badge>}
                   >
-                    <TagListForm {...this.props} name="tags.tagList" />
+                    <this.connectedTagListForm {...this.props} name="tags.tagList" />
                   </Accordion>
                   <Accordion
                     id="accessRestrictionsSection"
