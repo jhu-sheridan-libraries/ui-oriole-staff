@@ -2,13 +2,12 @@ import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 import { Settings } from '@folio/stripes/smart-components';
 import GeneralSettings from './general-settings';
-import SubjectsSettings from './SubjectsSettings';
 import LibrariesSettings from './LibrariesSettings';
 
 class OrioleSettings extends React.Component {
   static propTypes = {
     intl: intlShape.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
