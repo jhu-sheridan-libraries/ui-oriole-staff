@@ -11,7 +11,7 @@ const TagListView = ({ tags }) => (
     <List
       items={tags}
       itemFormatter={(item) => <li key={item}>{item}</li>}
-      isEmptyMessage={<FormattedMessage id="ui-oriole.tags.notFound" />}
+      isEmptyMessage={<FormattedMessage id="ui-oriole.tags.empty" />}
     />
   </KeyValue>
 );
