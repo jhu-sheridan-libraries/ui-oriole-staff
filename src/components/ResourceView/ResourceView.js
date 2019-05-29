@@ -20,6 +20,7 @@ import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
 import { TagListView } from '../Sections/TagList';
 import { AccessRestrictionsView } from '../Sections/AccessRestrictions';
+import AvailabilityView from "../Sections/Availability/AvailabilityView";
 
 class ResourceView extends Component {
   static manifest = Object.freeze({
@@ -185,6 +186,12 @@ class ResourceView extends Component {
             displayWhenClosed={<Badge>{tags.length}</Badge>}
           >
             <TagListView tags={tags} />
+          </Accordion>
+          <Accordion
+            label={<FormattedMessage id="ui-oriole.availability.heading"/>}
+            id="availabilitySection"
+          >
+            <AvailabilityView locations={_.get(record, 'availability', [])} />
           </Accordion>
           <Accordion
             id="accessRestrictionsSection"

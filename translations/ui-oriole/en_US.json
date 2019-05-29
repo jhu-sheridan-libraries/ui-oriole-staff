@@ -28,8 +28,10 @@
   "accessRestrictions.add": "Add access restriction",
   "accessRestrictions.remove": "Remove access restriction",
   "accessRestrictions.empty": "No access restrictions",
-
   "accessRestrictions.heading": "Access Restrictions",
+
+  "availability.heading": "Availability",
+  "availability.empty": "Available at all locations",
 
   "databases.columns.title": "Title",
   "databases.columns.publisher": "Publisher",
