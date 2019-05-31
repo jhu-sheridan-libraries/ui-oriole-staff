@@ -106,6 +106,23 @@
     react-intl "^2.3.0"
     redux-form "^7.0.3"
 
+"@folio/plugin-find-user@^1.1.0":
+  version "1.7.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/plugin-find-user/-/plugin-find-user-1.7.0.tgz#bd7daa71aeb5fcda06d7b012c72079e11f79c1d8"
+  integrity sha512-dzJ7FeW2Bdy0Nqp/K7xfh2m5HI/EwUEpO3Lhf5K/wcpSkWH7hs81kBXmdbokR2CWzu+B3VR6pSi4NPBi/I3BWw==
+  dependencies:
+    classnames "^2.2.5"
+    dom-helpers "^3.4.0"
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+
+"@folio/react-intl-safe-html@^1.0.0":
+  version "1.0.3"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/react-intl-safe-html/-/react-intl-safe-html-1.0.3.tgz#3080f7b0aa94d8d7744da7028a39138fd17a2815"
+  integrity sha512-9V7KEi6IJrnG9IZQrtfZLN8IgRGTtAhAZS0CaHcfOlvPXTXogPfaQbi3klXFtFvbfgrzyrjswG+9ZWDIXDwmQA==
+  dependencies:
+    sanitize-html "1.18.2"
+
 "@folio/react-intl-safe-html@^1.0.1", "@folio/react-intl-safe-html@^1.0.2":
   version "1.0.2"
   resolved "https://repository.folio.org/repository/npm-folio/@folio/react-intl-safe-html/-/react-intl-safe-html-1.0.2.tgz#7b5c087653a077de721db6e68703c52906a5b523"
@@ -311,6 +328,25 @@
     react-dom "~16.8.6"
     react-redux "~5.1.1"
     redux "~3.7.2"
+
+"@folio/users@^2.22.0":
+  version "2.22.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/users/-/users-2.22.0.tgz#14ef5eed84a7bf668a123c98526143009e62d15f"
+  integrity sha512-8US6RVlBBbTlCKjlZ9PK/1P/ECIWvDLJPq7Frt/C4Tnj1of2wiXWL8DEf7ylgb0IoWM/rT3tbeCeIGwVIDm9GQ==
+  dependencies:
+    "@folio/react-intl-safe-html" "^1.0.0"
+    hashcode "^1.0.3"
+    lodash "^4.17.4"
+    moment "^2.22.2"
+    prop-types "^15.5.10"
+    query-string "^5.0.0"
+    react-hot-loader "^4.3.12"
+    react-intl "^2.5.0"
+    react-router-dom "^4.0.0"
+    redux-form "^7.0.3"
+    uuid "^3.0.1"
+  optionalDependencies:
+    "@folio/plugin-find-user" "^1.1.0"
 
 "@types/q@^1.5.1":
   version "1.5.1"
@@ -2588,7 +2624,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-helpers@^3.2.1, dom-helpers@^3.3.1:
+dom-helpers@^3.2.1, dom-helpers@^3.3.1, dom-helpers@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
   dependencies:
@@ -3633,6 +3669,11 @@ hasha@^2.2.0:
   dependencies:
     is-stream "^1.0.1"
     pinkie-promise "^2.0.0"
+
+hashcode@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/hashcode/-/hashcode-1.0.3.tgz#d8474e9e67658048ccc7e54840b5662202f4837f"
+  integrity sha1-2EdOnmdlgEjMx+VIQLVmIgL0g38=
 
 he@1.2.x:
   version "1.2.0"
@@ -4791,7 +4832,7 @@ moment-timezone@^0.5.14, moment-timezone@^0.5.17:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.17.1, moment@^2.19.1, moment@^2.22.1:
+"moment@>= 2.9.0", moment@^2.17.1, moment@^2.19.1, moment@^2.22.1, moment@^2.22.2:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
