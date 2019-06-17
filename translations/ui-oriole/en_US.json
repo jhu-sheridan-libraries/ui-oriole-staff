@@ -35,5 +35,8 @@
   "databases.columns.title": "Title",
   "databases.columns.publisher": "Publisher",
   "databases.columns.updatedDate": "Last Updated",
-  "databases.columns.createdDate": "Created"
+  "databases.columns.createdDate": "Created",
+
+  "resource.form.validate.url": "URL is required",
+  "resource.form.validate.title": "Title is required"
 }

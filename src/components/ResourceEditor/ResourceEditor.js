@@ -26,9 +26,14 @@ import { TagListForm } from '../Sections/TagList';
 import { AccessRestrictionsForm } from '../Sections/AccessRestrictions';
 import { getItemById } from '../../selectors/resource';
 
-
-function validate(values, props) {
+const validate = (item) => {
   const errors = {};
+  if (!item.url) {
+    errors.url = <FormattedMessage id="ui-oriole.resource.form.validate.url" />;
+  }
+  if (!item.title) {
+    errors.title = <FormattedMessage id="ui-oriole.resource.form.validate.title" />;
+  }
   return errors;
 }
 
@@ -127,9 +132,9 @@ class ResourceEditor extends Component {
           <Pane defaultWidth="100%" firstMenu={firstMenu} lastMenu={lastMenu} paneTitle={paneTitle}>
             <Row>
               <Col xs={8}>
-                <Field label="Title" name="title" id="title" component={TextField} fullWidth />
+                <Field label="Title*" name="title" id="title" component={TextField} fullWidth />
                 <Field label="Alternative Titles" name="altTitle" id="altTitle" component={TextField} fullWidth />
-                <Field label="URL" name="url" id="url" component={TextField} fullWidth />
+                <Field label="URL*" name="url" id="url" component={TextField} fullWidth />
                 {
                   typeof id !== 'undefined' &&
                   <KeyValue label="JHU ID" value={_.get(initialValues, ['altId'])} />
