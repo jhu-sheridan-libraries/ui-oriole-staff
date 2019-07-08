@@ -148,7 +148,7 @@ class ResourceEditor extends Component {
                 <Field label="Description" name="description" id="description" component={TextArea} fullWidth style={{ height: 120 }} />
                 <Field label="Publisher" name="publisher" id="publisher" component={TextField} fullWidth />
                 <Field label="Creator" name="creator" id="creator" component={TextField} fullWidth />
-                <Field label="Note" name="note" id="note" component={TextArea} fullWidth style={{ height: 120 }} />
+                <Field label="Staff Notes" name="note" id="note" component={TextArea} fullWidth style={{ height: 120 }} />
                 <AccordionSet accordionStatus={this.state.sections} onToggle={this.handleSectionToggle}>
                   <Accordion
                     label={<FormattedMessage id="ui-oriole.tags.heading" />}
