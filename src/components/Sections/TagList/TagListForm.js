@@ -92,10 +92,14 @@ class TagListForm extends React.Component {
 
   renderList = ({ fields }) => {
     this.fields = fields;
+    let values = [];
+    if (this.fields && this.fields.length > 0) {
+      values = this.fields.getAll().sort();
+    }
     const listFormatter = (fieldName, index) => (this.renderItem(fields.get(index), index));
     return (
       <List
-        items={fields}
+        items={values}
         itemFormatter={listFormatter}
         isEmptyMessage={<FormattedMessage id="ui-oriole.tags.empty" />}
       />

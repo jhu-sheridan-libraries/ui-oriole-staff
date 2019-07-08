@@ -9,7 +9,7 @@ import {
 const TagListView = ({ tags }) => (
   <KeyValue label="">
     <List
-      items={tags}
+      items={tags.sort()}
       itemFormatter={(item) => <li key={item}>{item}</li>}
       isEmptyMessage={<FormattedMessage id="ui-oriole.tags.empty" />}
     />
