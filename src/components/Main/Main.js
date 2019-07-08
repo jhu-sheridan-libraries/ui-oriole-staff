@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { SearchAndSort } from '@folio/stripes/smart-components';
+import { Callout } from '@folio/stripes/components';
 import transitionToParams from '@folio/stripes-components/util/transitionToParams';
 import removeQueryParam from '@folio/stripes-components/util/removeQueryParam';
 import { filters2cql } from '@folio/stripes-components/lib/FilterGroups';
@@ -17,10 +18,10 @@ const RESULT_COUNT_INCREMENT = 30;
 const searchableIndexes = [
   { label: 'All (Keywords)', value: 'all', makeQuery: term => `(keywords any ${term}*)` },
   { label: 'Title', value: 'title', makeQuery: term => `(title="*${term}*")` },
-  { label: 'ID', value: 'jhuId', makeQuery: term => `(jhuId="${term}")` },
-  { label: 'FAST Term', value: 'term', makeQuery: term => `(terms=="*${term}*")` },
-  { label: 'JHU Subject', value: 'jhu_subject', makeQuery: term => `(tags.tagList=/respectAccents "${term}")` },
-  { label: 'Publisher', value: 'publisher', makeQuery: term => `(publisher=="*${term}*)` },
+  { label: 'ID', value: 'altId', makeQuery: term => `(altId="${term}")` },
+  // { label: 'FAST Term', value: 'term', makeQuery: term => `(terms=="*${term}*")` },
+  { label: 'Tag', value: 'tag', makeQuery: term => `(tags.tagList=/respectAccents "${term}")` },
+  // { label: 'Publisher', value: 'publisher', makeQuery: term => `(publisher=="*${term}*)` },
 ];
 const filterConfig = [];
 
@@ -190,6 +191,7 @@ class Main extends Component {
           searchableIndexPlaceHolder={null}
           onChangeIndex={this.onChangeIndex}
         />
+        <Callout ref={this.callout} />
       </div>
     );
   }
