@@ -103,7 +103,10 @@ class TagListForm extends React.Component {
   };
 
   render() {
-    const availableTags = (this.props.resources.availableTags || {}).records || [];
+    let availableTags = (this.props.resources.availableTags || {}).records || [];
+    if (this.fields && this.fields.length > 0) {
+      availableTags = availableTags.filter(x => !this.fields.getAll().includes(x), this);
+    }
     const tagsDD = (
       <SearchableList
         items={availableTags}
