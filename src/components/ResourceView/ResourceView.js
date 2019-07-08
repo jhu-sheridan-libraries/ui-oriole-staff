@@ -174,7 +174,7 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Note">
+            <KeyValue label="Staff Notes">
               <div dangerouslySetInnerHTML={{ __html: _.get(record, 'note', '').replace(/\r?\n/g, '<br/>') }} />
             </KeyValue>
           </Col>
