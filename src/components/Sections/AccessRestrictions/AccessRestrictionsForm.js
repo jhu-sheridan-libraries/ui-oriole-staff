@@ -35,7 +35,7 @@ class AccessRestrictionsForm extends Component {
         </Row>
         <Row>
           <Col xs={12} style={{ paddingTop: '10px' }}>
-            <Button onClick={() => fields.push({})}><FormattedMessage id="ui-oriole.accessRestrictions.add" /></Button>
+            <Button onClick={() => fields.push({ private: false })}><FormattedMessage id="ui-oriole.accessRestrictions.add" /></Button>
           </Col>
         </Row>
       </Fragment>
