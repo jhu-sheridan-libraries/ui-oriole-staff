@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import {
   Pane,
   PaneMenu,
@@ -20,18 +20,9 @@ import ResourceEditor from '../ResourceEditor';
 import { getItemById } from '../../selectors/resource';
 import { TagListView } from '../Sections/TagList';
 import { AccessRestrictionsView } from '../Sections/AccessRestrictions';
-import AvailabilityView from "../Sections/Availability/AvailabilityView";
+import AvailabilityView from '../Sections/Availability/AvailabilityView';
 
 class ResourceView extends Component {
-  static manifest = Object.freeze({
-    query: {},
-    selResource: {
-      type: 'okapi',
-      path: 'oriole/resources/:{id}',
-      clear: false,
-    },
-  });
-
   static propTypes = {
     match: PropTypes.object.isRequired,
     dropdown: PropTypes.object,

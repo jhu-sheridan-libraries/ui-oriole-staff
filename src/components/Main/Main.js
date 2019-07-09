@@ -110,8 +110,9 @@ class Main extends Component {
     match: PropTypes.object,
     stripes: PropTypes.object.isRequired,
     mutator: PropTypes.object.isRequired,
-    // onSelectRow: PropTypes.func,
+    onSelectRow: PropTypes.func,
     resources: PropTypes.object.isRequired,
+    onComponentWillUnmount: PropTypes.func,
   };
 
   constructor(props) {
@@ -144,7 +145,7 @@ class Main extends Component {
   };
 
   render() {
-    const { stripes, mutator, resources } = this.props;
+    const { stripes, mutator, resources, onSelectRow, onComponentWillUnmount } = this.props;
     const resultsFormatter = {
       'title': data => _.get(data, 'title', ''),
       'createdDate': data => _.get(data, ['metadata', 'createdDate'], '').substring(0, 10),
@@ -171,21 +172,20 @@ class Main extends Component {
           resultsFormatter={resultsFormatter}
           columnMapping={columnMapping}
           viewRecordComponent={ResourceView}
-          // onSelectRow={onSelectRow}
+          onSelectRow={onSelectRow}
           onCreate={this.create}
           editRecordComponent={ResourceEditor}
           newRecordInitialValues={{}}
           initialResultCount={INITIAL_RESULT_COUNT}
           resultCountIncrement={RESULT_COUNT_INCREMENT}
           finishedResourceName="perms"
-          // viewRecordPerms="databases.item.get"
           viewRecordPerms=""
           newRecordPerms="databases.item.post"
           parentResources={resources}
           parentMutator={mutator}
           detailProps={{ stripes }}
           stripes={stripes}
-          // onComponentWillUnmount={onComponentWillUnmount}
+          onComponentWillUnmount={onComponentWillUnmount}
           searchableIndexes={searchableIndexes}
           selectedIndex={_.get(this.props.resources.query, 'qindex')}
           searchableIndexPlaceHolder={null}
