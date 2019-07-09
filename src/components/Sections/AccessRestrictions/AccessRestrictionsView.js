@@ -12,8 +12,8 @@ const AccessRestrictionsView = ({
   const notFoundMsg = <FormattedMessage id="ui-oriole.notFound" values={{ name: heading }} />;
   let blocks;
   if (accessRestrictions.length > 0) {
-    blocks = accessRestrictions.map((item) => (
-      <div className={css.item}>
+    blocks = accessRestrictions.map((item, index) => (
+      <div className={css.item} key={_.get(item, 'type', '') + index}>
         <LayoutHeader level={3} title={_.get(item, 'type', '')} noActions />
         <div className={css.content}>
           <Row>
