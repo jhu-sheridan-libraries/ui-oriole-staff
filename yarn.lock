@@ -107,17 +107,6 @@
     eslint-plugin-jsx-a11y "^6.0.3"
     eslint-plugin-react "^7.6.0"
 
-"@folio/organization@^2.8.1":
-  version "2.8.1"
-  resolved "https://repository.folio.org/repository/npm-folio/@folio/organization/-/organization-2.8.1.tgz#b70b5b3a615e29795902faacbfd40c75ac405241"
-  integrity sha512-PMBcUj3PWhJb0mOk4chVrIQAY8M0oDhXhr5XTgFw/JNC3vbUxCk5ZD6iCCon88Yf5Q0Pe9htwC37mpB1FcnhwA==
-  dependencies:
-    "@folio/react-intl-safe-html" "^1.0.1"
-    lodash "^4.17.4"
-    prop-types "^15.6.0"
-    react-intl "^2.3.0"
-    redux-form "^7.0.3"
-
 "@folio/plugin-find-user@^1.1.0":
   version "1.7.0"
   resolved "https://repository.folio.org/repository/npm-folio/@folio/plugin-find-user/-/plugin-find-user-1.7.0.tgz#bd7daa71aeb5fcda06d7b012c72079e11f79c1d8"
@@ -349,6 +338,17 @@
     react-dom "~16.8.6"
     react-redux "~5.1.1"
     redux "~3.7.2"
+
+"@folio/tenant-settings@^2.11.0":
+  version "2.11.0"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/tenant-settings/-/tenant-settings-2.11.0.tgz#c9c6c8943b3507e29fb46b93c5602e1ec60b0693"
+  integrity sha512-/JubVc6ZwJuzGVmhSaXMP40AhdwYbz93ytcqnjjYhe6jOhuFlgDH7n7sDIFOs/3Xm/lOf34fBxE5uHdoTG5qNQ==
+  dependencies:
+    "@folio/react-intl-safe-html" "^1.0.1"
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+    react-intl "^2.3.0"
+    redux-form "^7.0.3"
 
 "@folio/users@^2.22.0":
   version "2.22.0"
