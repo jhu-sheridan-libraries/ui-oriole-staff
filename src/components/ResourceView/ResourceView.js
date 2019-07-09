@@ -68,10 +68,6 @@ class ResourceView extends Component {
     });
   };
 
-  onRemove = (item) => {
-    console.log('remove', item);
-  };
-
   handleSectionToggle = ({ id }) => {
     this.setState(curState => {
       const newState = _.cloneDeep(curState);
