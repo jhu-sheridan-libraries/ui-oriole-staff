@@ -24,7 +24,9 @@
     "redux": "^4.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "debug": "^2.6.9"
+    "debug": "^2.6.9",
+    "lodash.mergewith": "^4.6.2",
+    "lodash-es": "^4.17.14"
   },
   "dependencies": {
     "@folio/tenant-settings": "^2.11.0",
@@ -37,8 +39,7 @@
     "react-hot-loader": "^4.3.12",
     "react-intl": "^2.5.0",
     "react-router-dom": "^4.1.1",
-    "redux-form": "^7.4.2",
-    "lodash-es": "^4.17.14"
+    "redux-form": "^7.4.2"
   },
   "peerDependencies": {
     "@folio/stripes-logger": "^1.0.0",
