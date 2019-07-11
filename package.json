@@ -37,12 +37,14 @@
     "react-hot-loader": "^4.3.12",
     "react-intl": "^2.5.0",
     "react-router-dom": "^4.1.1",
-    "redux-form": "^7.4.2"
+    "redux-form": "^7.4.2",
+    "lodash-es": "^4.17.14"
   },
   "peerDependencies": {
     "@folio/stripes-logger": "^1.0.0",
     "react": "*",
-    "react-redux": "*"
+    "react-redux": "*",
+    "lodash-es": "^4.17.14"
   },
   "stripes": {
     "type": "app",
