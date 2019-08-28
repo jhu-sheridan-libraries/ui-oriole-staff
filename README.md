@@ -1,4 +1,4 @@
-# ui-oriole
+# ui-oriole-staff
 
 Copyright (C) 2018 Johns Hopkins University Libraries
 
@@ -15,6 +15,40 @@ In order to view and log into the platform being served up, a suitable Okapi bac
 For oriole backend, see these projects: 
 * [mod-oriole](https://github.com/jhu-sheridan-libraries/mod-oriole) - The Oriole API
 * [oriole-ansible](https://github.com/jhu-sheridan-libraries/oriole-ansible) - Deployment scripts using ansible
+
+## Set up 
+
+Create two files `.stripesclirc` and `stripes.config.js.local`, 
+
+```
+#.stripesclirc
+{
+  "configFile": "stripes.config.js.local",
+  "port": 3001,
+  "aliases": {
+  }  
+}
+```
+
+`.stripesclirc` tells stripes to look for the config file at a path, and runs on a port. You can change the port to a different one if you prefer. 
+
+The config file, `stripes.config.js.local`(or you may rename it to a different one), tells the app where to look for OKAPI, and using which tenent. It also sets up config params, and define the list of modules to include. See the official documentation for details: https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md
+
+Below is just an example: 
+
+```
+#stripes.config.js.local
+module.exports = {
+  okapi: { 'url':'https://path-to-oriole-api', 'tenant':'diku' },
+  config: {
+    hasAllPerms: true
+  },
+  modules: {
+    '@folio/tenant-settings': {},
+    '@folio/users': {}
+  }
+};
+```
 
 ## Run your new app
 
@@ -69,6 +103,16 @@ Run the included UI test `demo` with the following command:
 ```
 stripes test --run demo --show
 ```
+
+## Deploy
+
+Deploy to the test server is straightforward: 
+
+```
+yarn build
+```
+
+Then delete the content in oriole-test:/opt/ui_staff, and SCP the content in the `build` directory to oriole-test:/opt/ui_staff.
 
 ## What to do next?
 
