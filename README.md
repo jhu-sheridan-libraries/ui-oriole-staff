@@ -9,7 +9,14 @@ for more information.
 
 This module was created with stripes. For documentation of stripes, see [stripes documentation](https://github.com/folio-org/stripes). 
 
-## Prerequisites
+## Prerequisites/ Sandbox Setup 
+
+* brew install yarn
+* yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+* yarn global add @folio/stripes-cli
+* yarn global add @babel/preset-react
+* yarn global add @babel/core
+* stripes alias add @folio/stripes-core ~/.config/yarn/global/node_modules/@folio/stripes-core
 
 In order to view and log into the platform being served up, a suitable Okapi backend will need to be running. 
 For oriole backend, see these projects: 
