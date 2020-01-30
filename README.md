@@ -27,7 +27,9 @@ nvm alias default 12
 yarn global add --force sharp
 
 yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+
 yarn global add @folio/stripes-cli
+
 stripes alias add @folio/stripes-core ~/tester/ui-oriole-staff/node_modules/@folio/stripes-core
 
 yarn install 
