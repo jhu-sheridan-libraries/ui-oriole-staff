@@ -10,13 +10,28 @@ for more information.
 This module was created with stripes. For documentation of stripes, see [stripes documentation](https://github.com/folio-org/stripes). 
 
 ## Prerequisites/ Sandbox Setup 
+brew install nvm
+mkdir ~/.nvm
+vi ~/.bash_profile
 
-* brew install yarn
-* yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
-* yarn global add @folio/stripes-cli
-* yarn global add @babel/preset-react
-* yarn global add @babel/core
-* stripes alias add @folio/stripes-core ~/.config/yarn/global/node_modules/@folio/stripes-core
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+source ~/.bash_profile
+echo $NVM_DIR
+
+nvm install 0.12
+nvm use 0.12
+
+nvm alias default 12
+yarn global add --force sharp
+
+yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+yarn global add @folio/stripes-cli
+stripes alias add @folio/stripes-core ~/tester/ui-oriole-staff/node_modules/@folio/stripes-core
+
+yarn install 
+yarn start
 
 In order to view and log into the platform being served up, a suitable Okapi backend will need to be running. 
 For oriole backend, see these projects: 
