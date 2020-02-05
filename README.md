@@ -1,9 +1,11 @@
 # ui-oriole-staff
 
+This repo is the front-end of Folio, and contains our Oriole module. The front-end for Folio is based on a framework called Stripes.
+
 Copyright (C) 2018 Johns Hopkins University Libraries
 
 This software is distributed under the terms of the Apache License, Version 2.0. See the file "[LICENSE](LICENSE)" 
-for more information.
+for more information. 
 
 ## Introduction
 
