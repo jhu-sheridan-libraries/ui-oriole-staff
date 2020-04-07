@@ -60,7 +60,10 @@ class ResourceView extends Component {
 
   update = (resource) => {
     delete resource.resources;
-    this.props.mutator.selResource.PUT(resource).then(() => {
+    console.log(this.props)
+    console.log(this.props.parentMutator)
+    console.log(this.props.parentMutator.records)
+    this.props.parentMutator.records.PUT(resource).then(() => {
       this.setState({
         lastUpdate: new Date().toISOString(),
       });
@@ -151,12 +154,7 @@ class ResourceView extends Component {
         </Row>
         <Row>
           <Col>
-            <KeyValue label="Publisher" value={_.get(record, 'publisher', '')} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <KeyValue label="Creator" value={_.get(record, 'creator', '')} />
+            <KeyValue label="Provider" value={_.get(record, 'provider', '')} />
           </Col>
         </Row>
         <Row>
