@@ -22,10 +22,10 @@ source $(brew --prefix nvm)/nvm.sh
 source ~/.bash_profile  \
 echo $NVM_DIR
 
-nvm install 12. 
+nvm install 12. \
 nvm use 12
 
-nvm alias default 12. 
+nvm alias default 12. \
 yarn global add --force sharp. 
 
 yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
@@ -34,7 +34,7 @@ yarn global add @folio/stripes-cli
 
 stripes alias add @folio/stripes-core ~/tester/ui-oriole-staff/node_modules/@folio/stripes-core
 
-yarn install. 
+yarn install \
 yarn start
 
 In order to view and log into the platform being served up, a suitable Okapi backend will need to be running. 
