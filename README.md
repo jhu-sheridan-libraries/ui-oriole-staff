@@ -12,14 +12,14 @@ for more information.
 This module was created with stripes. For documentation of stripes, see [stripes documentation](https://github.com/folio-org/stripes). 
 
 ## Prerequisites/ Sandbox Setup 
-brew install nvm. 
-mkdir ~/.nvm. 
+brew install nvm.  \
+mkdir ~/.nvm. \
 vi ~/.bash_profile 
 
-export NVM_DIR=~/.nvm. 
+export NVM_DIR=~/.nvm. \
 source $(brew --prefix nvm)/nvm.sh
 
-source ~/.bash_profile  
+source ~/.bash_profile  \
 echo $NVM_DIR
 
 nvm install 12. 
