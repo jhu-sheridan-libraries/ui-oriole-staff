@@ -138,8 +138,18 @@ Deploy to the test server is straightforward:
 yarn build
 ```
 
-Then delete the content in oriole-test:/opt/ui_staff, and SCP the content in the `build` directory to oriole-test:/opt/ui_staff.
+Run the following comands to synch to the AWS static website bucket:
 
+Dev:
+```
+cd build
+aws s3 sync . s3://folio-dev-staff-ui-bucket --profile lag-logs
+```
+```
+Prod
+cd build
+aws s3 sync . s3://folio-prod-staff-ui-bucket --profile lag-logs
+```
 ## What to do next?
 
 Now that your new app is running, search the code for "`stripes-new-app`" to find comments and subbed placeholders 

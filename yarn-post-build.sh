@@ -11,3 +11,6 @@ cp node_modules_hacks/RootWithIntl.js node_modules/@folio/stripes-core/src
 cp node_modules_hacks/index.js node_modules/@folio/stripes-core/src/components
 cp node_modules_hacks/Login.js node_modules/@folio/stripes-core/src/components/Login
 cp -R node_modules_hacks/LoginAdmin node_modules/@folio/stripes-core/src/components
+
+#focus issue with radio button 
+cp node_modules_hacks/RadioButton.js node_modules/@folio/stripes-components/lib/RadioButton

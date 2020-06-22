@@ -140,6 +140,7 @@ class Main extends Component {
   };
 
   onChangeIndex = (e) => {
+    console.log('1');
     const qindex = e.target.value;
     this.props.mutator.query.update({ qindex });
   };
@@ -150,13 +151,13 @@ class Main extends Component {
       'title': data => _.get(data, 'title', ''),
       'createdDate': data => _.get(data, ['metadata', 'createdDate'], '').substring(0, 10),
       'updatedDate': data => _.get(data, ['metadata', 'updatedDate'], '').substring(0, 10),
-      'publisher': data => _.get(data, 'publisher', ''),
+      'provider': data => _.get(data, 'provider', ''),
     };
     const columnMapping = {
       'title': <FormattedMessage id="ui-oriole.databases.columns.title" />,
       'createdDate': <FormattedMessage id="ui-oriole.databases.columns.createdDate" />,
       'updatedDate': <FormattedMessage id="ui-oriole.databases.columns.updatedDate" />,
-      'publisher': <FormattedMessage id="ui-oriole.databases.columns.publisher" />,
+      'provider': <FormattedMessage id="Provider" />,
     };
 
     return (
@@ -168,7 +169,7 @@ class Main extends Component {
           objectName="databases"
           baseRoute={packageInfo.stripes.route}
           filterConfig={filterConfig}
-          visibleColumns={['title', 'publisher', 'createdDate', 'updatedDate']}
+          visibleColumns={['title', 'provider', 'createdDate', 'updatedDate']}
           resultsFormatter={resultsFormatter}
           columnMapping={columnMapping}
           viewRecordComponent={ResourceView}
